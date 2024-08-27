@@ -13,4 +13,10 @@ class AppTextStyles {
     fontSize: 20.0,
     fontWeight: FontWeight.normal,
   );
+  static const TextStyle KodchasanButton = TextStyle(
+    fontFamily: 'Kodchasan',
+    fontSize: 28.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.black
+  );
 }
