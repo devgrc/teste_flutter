@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:teste_flutter/common/constants/app_colors.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({super.key, required AppBar appBar});
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFFF3EFEF),
+        color: AppColors.primalWhite,
       ),
       child: Center(
         child: Image.asset(
           'assets/images/logo.png',
-          width: 250,
-          height: 250,
+          width: 252,
+          height: 237,
         ),
       ),
     );
