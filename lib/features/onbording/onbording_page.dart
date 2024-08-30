@@ -7,62 +7,76 @@ class OnboardngPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
+        alignment: Alignment.topCenter,
         children: [
-          const SizedBox(height: 90.0), // Espaço antes do conteúdo principal
-          Expanded(
-            child: Container(
-              height: 300.0, // Altura do container principal
-              color: Color(0xFF3D9673), // Cor de fundo do container
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 34.0), // Define o espaçamento lateral
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment
-                      .center, // Centraliza verticalmente os widgets na coluna
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start, // Alinha os widgets à esquerda
-                  children: [
-                    const Align(
-                      alignment: Alignment
-                          .centerLeft, // Alinha o texto à esquerda dentro do alinhamento
-                      child: Text(
-                        'Nunca é tarde para organizar sua vida financeira.',
-                        style: AppTextStyles.KodchasanOnBoarding,
-                        textAlign: TextAlign
-                            .left, // Alinha o texto à esquerda no espaço disponível
-                      ), 
-                    ), 
-                    const SizedBox(
-                        height: 200.0), // Espaço entre o texto e o botão
-                    Center(
-                      child: SizedBox(
-                        width: 335.32, 
-                        height: 59.0, 
-                        child: ElevatedButton(
-                          onPressed: () {}, 
-                          child: const Text(
-                            'Comece Agora!',
-                            style: AppTextStyles.KodchasanButton, 
-                          ), 
-                        ), 
-                      ), 
-                    ), 
-                    const SizedBox(
-                        height: 16.0), // Espaço entre o botão e o texto pequeno
-                    const Center(
-                      child: Text(
-                        'Já tem uma conta? Faça Login!',
-                        style: AppTextStyles.KodchasanLogin,
-                      ),
+          Column(
+            children: [
+              const SizedBox(height: 150.0),
+              Expanded(
+                child: Container(
+                  height: 300.0,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF3D9673),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(55.0),
+                      topRight: Radius.circular(55.0),
                     ),
-                  ],
-                ), 
-              ), 
-            ), 
-          ), 
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 34.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 80.0),
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Nunca é tarde para organizar sua vida financeira.',
+                            style: AppTextStyles.KodchasanOnBoarding,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                        const SizedBox(height: 90.0),
+                        Center(
+                          child: SizedBox(
+                            width: 335.32,
+                            height: 59.0,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: const Text(
+                                'Comece Agora!',
+                                style: AppTextStyles.KodchasanButton,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 16.0),
+                        const Center(
+                          child: Text(
+                            'Já tem uma conta? Faça Login!',
+                            style: AppTextStyles.KodchasanLogin,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            top: 55.0, // Ajuste a posição conforme necessário
+            left: 15.0,
+            child: Image.asset(
+              'assets/images/brazuca.png', // Substitua pelo caminho da sua imagem
+              width: 150.0, // Ajuste o tamanho conforme necessário
+              height: 150.0, // Ajuste o tamanho conforme necessário
+            ),
+          ),
         ],
-      ), 
-    ); 
+      ),
+    );
   }
 }
