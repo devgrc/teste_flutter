@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 
@@ -44,7 +46,7 @@ class OnboardngPage extends StatelessWidget {
                             width: 335.32,
                             height: 59.0,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () => log('Botão "Comece Agora" pressionado'),
                               child: const Text(
                                 'Comece Agora!',
                                 style: AppTextStyles.KodchasanButton,
@@ -67,12 +69,12 @@ class OnboardngPage extends StatelessWidget {
             ],
           ),
           Positioned(
-            top: 55.0, // Ajuste a posição conforme necessário
+            top: 55.0,
             left: 15.0,
             child: Image.asset(
-              'assets/images/brazuca.png', // Substitua pelo caminho da sua imagem
-              width: 150.0, // Ajuste o tamanho conforme necessário
-              height: 150.0, // Ajuste o tamanho conforme necessário
+              'assets/images/brazuca.png',
+              width: 150.0,
+              height: 150.0,
             ),
           ),
         ],
