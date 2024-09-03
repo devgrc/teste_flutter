@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   InputDecoration buildInputDecoration(String labelText, String hintText) {
     return InputDecoration(
@@ -70,25 +70,18 @@ class SignUpPage extends StatelessWidget {
                     const Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'Efetue o seu Cadastro!',
+                        'Efetue o seu Login!',
                         style: AppTextStyles.KantumLogin2,
                       ),
                     ),
-                    const SizedBox(height: 40.0),
-                    TextFormField(
-                      decoration: buildInputDecoration('Nome', 'Insira seu nome'),
-                    ),
+                    
                     const SizedBox(height: 20.0),
                     TextFormField(
-                      decoration: buildInputDecoration('Email', 'Insira seu email')
+                      decoration: buildInputDecoration('Nome','Digite seu email')
                     ),
                     const SizedBox(height: 20.0),
                     TextFormField(
                       decoration: buildInputDecoration('Senha', 'Insira sua senha')
-                    ),
-                    const SizedBox(height: 20.0),
-                    TextFormField(
-                      decoration: buildInputDecoration('Senha','Confirme sua senha')
                     ),
                     const SizedBox(height: 70.0),
                     Center(
@@ -102,7 +95,7 @@ class SignUpPage extends StatelessWidget {
                             shadowColor: Colors.black,
                           ),
                           child: const Text(
-                            'Cadastro',
+                            'Login',
                             style: AppTextStyles.KodchasanButton,
                           ),
                         ),
@@ -110,9 +103,9 @@ class SignUpPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     TextButton(
-                      onPressed: () => log('Botão "Cadastre-se" pressionado'),
+                      onPressed: () => log('Botão "Login" pressionado'),
                       child: const Text(
-                        'Já tem uma conta? Faça Login!',
+                        'Não tem uma conta? Cadastre-se!',
                         style: AppTextStyles.KodchasanLogin,
                       ),
                     ),
