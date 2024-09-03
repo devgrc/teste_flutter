@@ -56,29 +56,101 @@ class SignUpPage extends StatelessWidget {
                     const SizedBox(height: 40.0),
                     TextFormField(
                       decoration: const InputDecoration(
-                        labelText: 'Insira o seu Nome',
+                        labelText: 'Nome',
                         border: OutlineInputBorder(),
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(
+                                209, 55, 55, 55)), // Cor da etiqueta
+                        hintText: 'Digite seu nome',
+                        hintStyle: TextStyle(
+                            color: Color.fromARGB(
+                                103, 0, 0, 0)), // Cor da dica (hint)
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(
+                                  0xFFE4E4E4)), // Cor da borda quando o campo não está em foco
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(0xB4000000),
+                              width:
+                                  2.0), // Cor e largura da borda quando o campo está em foco
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20.0),
                     TextFormField(
                       decoration: const InputDecoration(
-                        labelText: 'Insira o seu Email',
+                        labelText: 'Email',
                         border: OutlineInputBorder(),
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(
+                                209, 55, 55, 55)), // Cor da etiqueta
+                        hintText: 'Digite seu email',
+                        hintStyle: TextStyle(
+                            color: Color.fromARGB(
+                                103, 0, 0, 0)), // Cor da dica (hint)
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(
+                                  0xFFE4E4E4)), // Cor da borda quando o campo não está em foco
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(0xB4000000),
+                              width:
+                                  2.0), // Cor e largura da borda quando o campo está em foco
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20.0),
                     TextFormField(
                       decoration: const InputDecoration(
-                        labelText: 'Insira a sua Senha',
+                        labelText: 'Senha',
                         border: OutlineInputBorder(),
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(
+                                209, 55, 55, 55)), // Cor da etiqueta
+                        hintText: 'Digite sua senha',
+                        hintStyle: TextStyle(
+                            color: Color.fromARGB(
+                                103, 0, 0, 0)), // Cor da dica (hint)
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(
+                                  0xFFE4E4E4)), // Cor da borda quando o campo não está em foco
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(180, 0, 0, 0),
+                              width:
+                                  2.0), // Cor e largura da borda quando o campo está em foco
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20.0),
                     TextFormField(
                       decoration: const InputDecoration(
-                        labelText: 'Confirme a sua Senha',
+                        labelText: 'Senha',
                         border: OutlineInputBorder(),
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(
+                                209, 55, 55, 55)), // Cor da etiqueta
+                        hintText: 'Confirme sua senha',
+                        hintStyle: TextStyle(
+                            color: Color.fromARGB(
+                                103, 0, 0, 0)), // Cor da dica (hint)
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(
+                                  0xFFE4E4E4)), // Cor da borda quando o campo não está em foco
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(0xB4000000),
+                              width: 2.0
+                              ), // Cor e largura da borda quando o campo está em foco
+                        ),
                       ),
                     ),
                     const SizedBox(height: 70.0),
@@ -89,8 +161,8 @@ class SignUpPage extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () => log('Botão "Cadastro" pressionado'),
                           style: ElevatedButton.styleFrom(
-                            elevation: 6, 
-                            shadowColor: Colors.black, 
+                            elevation: 6,
+                            shadowColor: Colors.black,
                           ),
                           child: const Text(
                             'Cadastro',
