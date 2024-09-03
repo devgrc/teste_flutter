@@ -52,6 +52,7 @@ class LoginPage extends StatelessWidget {
                   topRight: Radius.circular(55.0),
                 ),
               ),
+              child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 34.0),
                 child: Column(
@@ -110,6 +111,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
                 ),
               ),
             ),

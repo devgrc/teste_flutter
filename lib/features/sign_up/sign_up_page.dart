@@ -8,23 +8,24 @@ class SignUpPage extends StatelessWidget {
 
   InputDecoration buildInputDecoration(String labelText, String hintText) {
     return InputDecoration(
-    labelText: labelText,
-    border: const OutlineInputBorder(),
-    labelStyle: const TextStyle(
-        color: Color.fromARGB(209, 55, 55, 55)), // Cor da etiqueta
-    hintText: hintText,
-    hintStyle: const TextStyle(
-        color: Color.fromARGB(103, 0, 0, 0)), // Cor da dica (hint)
-    enabledBorder: const OutlineInputBorder(
-      borderSide: BorderSide(
-          color: Color(0xFFE4E4E4)), // Cor da borda quando o campo não está em foco
-    ),
-    focusedBorder: const OutlineInputBorder(
-      borderSide: BorderSide(
-          color: Color.fromARGB(180, 0, 0, 0),
-          width: 2.0), // Cor e largura da borda quando o campo está em foco
-    ),
-  );
+      labelText: labelText,
+      border: const OutlineInputBorder(),
+      labelStyle: const TextStyle(
+          color: Color.fromARGB(209, 55, 55, 55)), // Cor da etiqueta
+      hintText: hintText,
+      hintStyle: const TextStyle(
+          color: Color.fromARGB(103, 0, 0, 0)), // Cor da dica (hint)
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+            color: Color(
+                0xFFE4E4E4)), // Cor da borda quando o campo não está em foco
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+            color: Color.fromARGB(180, 0, 0, 0),
+            width: 2.0), // Cor e largura da borda quando o campo está em foco
+      ),
+    );
   }
 
   @override
@@ -44,7 +45,6 @@ class SignUpPage extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              height: 300.0,
               decoration: const BoxDecoration(
                 color: Color(0xFF3D9673),
                 borderRadius: BorderRadius.only(
@@ -52,71 +52,78 @@ class SignUpPage extends StatelessWidget {
                   topRight: Radius.circular(55.0),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 34.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20.0),
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Seja Bem Vindo',
-                        style: AppTextStyles.KantumLogin1,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 34.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20.0),
+                      const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Seja Bem Vindo',
+                          style: AppTextStyles.KantumLogin1,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 5.0,
-                    ),
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Efetue o seu Cadastro!',
-                        style: AppTextStyles.KantumLogin2,
+                      const SizedBox(
+                        height: 5.0,
                       ),
-                    ),
-                    const SizedBox(height: 40.0),
-                    TextFormField(
-                      decoration: buildInputDecoration('Nome', 'Insira seu nome'),
-                    ),
-                    const SizedBox(height: 20.0),
-                    TextFormField(
-                      decoration: buildInputDecoration('Email', 'Insira seu email')
-                    ),
-                    const SizedBox(height: 20.0),
-                    TextFormField(
-                      decoration: buildInputDecoration('Senha', 'Insira sua senha')
-                    ),
-                    const SizedBox(height: 20.0),
-                    TextFormField(
-                      decoration: buildInputDecoration('Senha','Confirme sua senha')
-                    ),
-                    const SizedBox(height: 70.0),
-                    Center(
-                      child: SizedBox(
-                        width: 335.32,
-                        height: 59.0,
-                        child: ElevatedButton(
-                          onPressed: () => log('Botão "Cadastro" pressionado'),
-                          style: ElevatedButton.styleFrom(
-                            elevation: 6,
-                            shadowColor: Colors.black,
-                          ),
-                          child: const Text(
-                            'Cadastro',
-                            style: AppTextStyles.KodchasanButton,
+                      const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Efetue o seu Cadastro!',
+                          style: AppTextStyles.KantumLogin2,
+                        ),
+                      ),
+                      const SizedBox(height: 40.0),
+                      TextFormField(
+                        decoration:
+                            buildInputDecoration('Nome', 'Insira seu nome'),
+                      ),
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration:
+                            buildInputDecoration('Email', 'Insira seu email'),
+                      ),
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration:
+                            buildInputDecoration('Senha', 'Insira sua senha'),
+                      ),
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration:
+                            buildInputDecoration('Senha', 'Confirme sua senha'),
+                      ),
+                      const SizedBox(height: 70.0),
+                      Center(
+                        child: SizedBox(
+                          width: 335.32,
+                          height: 59.0,
+                          child: ElevatedButton(
+                            onPressed: () =>
+                                log('Botão "Cadastro" pressionado'),
+                            style: ElevatedButton.styleFrom(
+                              elevation: 6,
+                              shadowColor: Colors.black,
+                            ),
+                            child: const Text(
+                              'Cadastro',
+                              style: AppTextStyles.KodchasanButton,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    TextButton(
-                      onPressed: () => log('Botão "Cadastre-se" pressionado'),
-                      child: const Text(
-                        'Já tem uma conta? Faça Login!',
-                        style: AppTextStyles.KodchasanLogin,
+                      const SizedBox(height: 16.0),
+                      TextButton(
+                        onPressed: () => log('Botão "Faça Login" pressionado'),
+                        child: const Text(
+                          'Já tem uma conta? Faça Login!',
+                          style: AppTextStyles.KodchasanLogin,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
