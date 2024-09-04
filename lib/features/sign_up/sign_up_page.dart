@@ -3,10 +3,19 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
-  InputDecoration buildInputDecoration(String labelText, String hintText) {
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
+
+  InputDecoration buildInputDecoration(String labelText, String hintText,
+      Widget? prefixIcon, Widget? suffixIcon) {
     return InputDecoration(
       labelText: labelText,
       border: const OutlineInputBorder(),
@@ -25,6 +34,8 @@ class SignUpPage extends StatelessWidget {
             color: Color.fromARGB(180, 0, 0, 0),
             width: 2.0), // Cor e largura da borda quando o campo está em foco
       ),
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
     );
   }
 
@@ -33,9 +44,7 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(
-            height: 15.0,
-          ),
+          const SizedBox(height: 15.0),
           Center(
             child: Image.asset(
               'assets/images/logo.png',
@@ -65,9 +74,7 @@ class SignUpPage extends StatelessWidget {
                           style: AppTextStyles.KantumLogin1,
                         ),
                       ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
+                      const SizedBox(height: 5.0),
                       const Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -77,23 +84,70 @@ class SignUpPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 40.0),
                       TextFormField(
-                        decoration:
-                            buildInputDecoration('Nome', 'Insira seu nome'),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        decoration: buildInputDecoration(
+                          'Nome',
+                          'Insira seu nome',
+                          const Icon(Icons.person),
+                          null,
+                        ),
                       ),
                       const SizedBox(height: 20.0),
                       TextFormField(
-                        decoration:
-                            buildInputDecoration('Email', 'Insira seu email'),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: buildInputDecoration(
+                          'Email',
+                          'Insira seu email',
+                          const Icon(Icons.email),
+                          null,
+                        ),
                       ),
                       const SizedBox(height: 20.0),
                       TextFormField(
-                        decoration:
-                            buildInputDecoration('Senha', 'Insira sua senha'),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: !_isPasswordVisible,
+                        decoration: buildInputDecoration(
+                          'Senha',
+                          'Insira sua senha',
+                          const Icon(Icons.password),
+                          IconButton(
+                            icon: Icon(
+                              _isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible;
+                              });
+                            },
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 20.0),
                       TextFormField(
-                        decoration:
-                            buildInputDecoration('Senha', 'Confirme sua senha'),
+                        textInputAction: TextInputAction.done,
+                        obscureText: !_isConfirmPasswordVisible,
+                        decoration: buildInputDecoration(
+                          'Senha',
+                          'Confirme sua senha',
+                          const Icon(Icons.password),
+                          IconButton(
+                            icon: Icon(
+                              _isConfirmPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                              });
+                            },
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 70.0),
                       Center(
