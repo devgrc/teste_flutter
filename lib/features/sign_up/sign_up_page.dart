@@ -11,6 +11,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
 
@@ -64,119 +67,165 @@ class _SignUpPageState extends State<SignUpPage> {
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 34.0),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 20.0),
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Seja Bem Vindo',
-                          style: AppTextStyles.KantumLogin1,
-                        ),
-                      ),
-                      const SizedBox(height: 5.0),
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Efetue o seu Cadastro!',
-                          style: AppTextStyles.KantumLogin2,
-                        ),
-                      ),
-                      const SizedBox(height: 40.0),
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
-                        decoration: buildInputDecoration(
-                          'Nome',
-                          'Insira seu nome',
-                          const Icon(Icons.person),
-                          null,
-                        ),
-                      ),
-                      const SizedBox(height: 20.0),
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: buildInputDecoration(
-                          'Email',
-                          'Insira seu email',
-                          const Icon(Icons.email),
-                          null,
-                        ),
-                      ),
-                      const SizedBox(height: 20.0),
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: !_isPasswordVisible,
-                        decoration: buildInputDecoration(
-                          'Senha',
-                          'Insira sua senha',
-                          const Icon(Icons.password),
-                          IconButton(
-                            icon: Icon(
-                              _isPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _isPasswordVisible = !_isPasswordVisible;
-                              });
-                            },
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 20.0),
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Seja Bem Vindo',
+                            style: AppTextStyles.KantumLogin1,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 20.0),
-                      TextFormField(
-                        textInputAction: TextInputAction.done,
-                        obscureText: !_isConfirmPasswordVisible,
-                        decoration: buildInputDecoration(
-                          'Senha',
-                          'Confirme sua senha',
-                          const Icon(Icons.password),
-                          IconButton(
-                            icon: Icon(
-                              _isConfirmPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-                              });
-                            },
+                        const SizedBox(height: 5.0),
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Efetue o seu Cadastro!',
+                            style: AppTextStyles.KantumLogin2,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 70.0),
-                      Center(
-                        child: SizedBox(
-                          width: 335.32,
-                          height: 59.0,
-                          child: ElevatedButton(
-                            onPressed: () =>
-                                log('Botão "Cadastro" pressionado'),
-                            style: ElevatedButton.styleFrom(
-                              elevation: 6,
-                              shadowColor: Colors.black,
+                        const SizedBox(height: 40.0),
+                        TextFormField(
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.name,
+                          decoration: buildInputDecoration(
+                            'Nome',
+                            'Insira seu nome',
+                            const Icon(Icons.person),
+                            null,
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Por favor, insira seu nome';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: buildInputDecoration(
+                            'Email',
+                            'Insira seu email',
+                            const Icon(Icons.email),
+                            null,
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Por favor, insira seu email';
+                            }
+                            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                .hasMatch(value)) {
+                              return 'Por favor, insira um email válido';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          controller: _passwordController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: !_isPasswordVisible,
+                          decoration: buildInputDecoration(
+                            'Senha',
+                            'Insira sua senha',
+                            const Icon(Icons.password),
+                            IconButton(
+                              icon: Icon(
+                                _isPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isPasswordVisible = !_isPasswordVisible;
+                                });
+                              },
                             ),
-                            child: const Text(
-                              'Cadastro',
-                              style: AppTextStyles.KodchasanButton,
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Por favor, insira sua senha';
+                            }
+                            if (value.length < 6) {
+                              return 'A senha deve ter pelo menos 6 caracteres';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            _confirmPasswordController.text = value;
+                          },
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
+                          controller: _confirmPasswordController,
+                          textInputAction: TextInputAction.done,
+                          obscureText: !_isConfirmPasswordVisible,
+                          decoration: buildInputDecoration(
+                            'Confirme sua Senha',
+                            'Confirme sua senha',
+                            const Icon(Icons.password),
+                            IconButton(
+                              icon: Icon(
+                                _isConfirmPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                                });
+                              },
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Por favor, confirme sua senha';
+                            }
+                            if (value != _passwordController.text) {
+                              return 'As senhas não coincidem';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 70.0),
+                        Center(
+                          child: SizedBox(
+                            width: 335.32,
+                            height: 59.0,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  log('Botão "Cadastro" pressionado');
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 6,
+                                shadowColor: Colors.black,
+                              ),
+                              child: const Text(
+                                'Cadastro',
+                                style: AppTextStyles.KodchasanButton,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      TextButton(
-                        onPressed: () => log('Botão "Faça Login" pressionado'),
-                        child: const Text(
-                          'Já tem uma conta? Faça Login!',
-                          style: AppTextStyles.KodchasanLogin,
+                        const SizedBox(height: 16.0),
+                        TextButton(
+                          onPressed: () =>
+                              log('Botão "Faça Login" pressionado'),
+                          child: const Text(
+                            'Já tem uma conta? Faça Login!',
+                            style: AppTextStyles.KodchasanLogin,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
