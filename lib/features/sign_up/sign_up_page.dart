@@ -23,18 +23,18 @@ class _SignUpPageState extends State<SignUpPage> {
       labelText: labelText,
       border: const OutlineInputBorder(),
       labelStyle: const TextStyle(
-          color: Color.fromARGB(209, 55, 55, 55)), // Cor da etiqueta
+          color: Color.fromARGB(209, 255, 255, 255)), // Cor da etiqueta
       hintText: hintText,
       hintStyle: const TextStyle(
-          color: Color.fromARGB(103, 0, 0, 0)), // Cor da dica (hint)
+          color: Color.fromARGB(103, 255, 255, 255)), // Cor da dica (hint)
       enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide(
             color: Color(
-                0xFFE4E4E4)), // Cor da borda quando o campo não está em foco
+                0xFFAFAFAF)), // Cor da borda quando o campo não está em foco
       ),
       focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromARGB(180, 0, 0, 0),
+            color: Color(0xFFE4E4E4),
             width: 2.0), // Cor e largura da borda quando o campo está em foco
       ),
       prefixIcon: prefixIcon,
@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Expanded(
             child: Container(
               decoration: const BoxDecoration(
-                color: Color(0xFF3D9673),
+                color: Color(0xFF003617),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(55.0),
                   topRight: Radius.circular(55.0),
@@ -94,7 +94,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           decoration: buildInputDecoration(
                             'Nome',
                             'Insira seu nome',
-                            const Icon(Icons.person),
+                            const Icon(
+                              Icons.person,
+                              color: Color.fromARGB(255, 255, 255, 255), // COR DO ÍCONE
+                            ),
                             null,
                           ),
                           validator: (value) {
@@ -111,7 +114,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           decoration: buildInputDecoration(
                             'Email',
                             'Insira seu email',
-                            const Icon(Icons.email),
+                            const Icon(
+                              Icons.email,
+                              color: Color.fromARGB(255, 255, 255, 255), // COR DO ÍCONE
+                              ),
                             null,
                           ),
                           validator: (value) {
@@ -134,12 +140,16 @@ class _SignUpPageState extends State<SignUpPage> {
                           decoration: buildInputDecoration(
                             'Senha',
                             'Insira sua senha',
-                            const Icon(Icons.password),
+                            const Icon(
+                              Icons.password, 
+                              color: Color.fromARGB(255, 255, 255, 255), // COR DO ÍCONE
+                              ),
                             IconButton(
                               icon: Icon(
                                 _isPasswordVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off,
+                                    color: const Color.fromARGB(255, 255, 255, 255), // COR DO ÍCONE
                               ),
                               onPressed: () {
                                 setState(() {
@@ -169,16 +179,21 @@ class _SignUpPageState extends State<SignUpPage> {
                           decoration: buildInputDecoration(
                             'Confirme sua Senha',
                             'Confirme sua senha',
-                            const Icon(Icons.password),
+                            const Icon(
+                              Icons.password,
+                              color: Color.fromARGB(255, 255, 255, 255), // COR DO ÍCONE
+                              ),
                             IconButton(
                               icon: Icon(
                                 _isConfirmPasswordVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off,
+                                    color: const Color.fromARGB(255, 255, 255, 255), // COR DO ÍCONE
                               ),
                               onPressed: () {
                                 setState(() {
-                                  _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                                  _isConfirmPasswordVisible =
+                                      !_isConfirmPasswordVisible;
                                 });
                               },
                             ),
