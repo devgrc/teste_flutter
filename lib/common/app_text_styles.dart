@@ -12,7 +12,7 @@ class AppTextStyles {
     fontFamily: 'Kodchasan',
     fontSize: 19.0,
     fontWeight: FontWeight.normal,
-    color: Color.fromARGB(255, 0, 0, 0)
+    color: Color.fromARGB(255, 255, 255, 255)
   );
   static const TextStyle KodchasanButton = TextStyle(
     fontFamily: 'Kodchasan',
@@ -24,7 +24,7 @@ class AppTextStyles {
     fontFamily: 'Kantumruy',
     fontSize: 40.0,
     fontWeight: FontWeight.normal,
-    color: Colors.black
+    color: Color.fromARGB(255, 255, 255, 255)
   );
   static const TextStyle KantumLogin2 = TextStyle(
     fontFamily: 'Kantumruy',
