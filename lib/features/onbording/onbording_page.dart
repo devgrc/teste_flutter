@@ -19,7 +19,7 @@ class OnboardngPage extends StatelessWidget {
                 child: Container(
                   height: 300.0,
                   decoration: const BoxDecoration(
-                    color: Color(0xFF3D9673),
+                    color: Color(0xFF003617),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(55.0),
                       topRight: Radius.circular(55.0),
@@ -46,7 +46,8 @@ class OnboardngPage extends StatelessWidget {
                             width: 335.32,
                             height: 59.0,
                             child: ElevatedButton(
-                              onPressed: () => log('Botão "Comece Agora" pressionado'),
+                              onPressed: () =>
+                                  log('Botão "Comece Agora" pressionado'),
                               child: const Text(
                                 'Comece Agora!',
                                 style: AppTextStyles.KodchasanButton,
@@ -55,12 +56,23 @@ class OnboardngPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 16.0),
-                        const Center(
-                          child: Text(
-                            'Já tem uma conta? Faça Login!',
-                            style: AppTextStyles.KodchasanLogin,
-                          ),
-                        ),
+                        InkWell(
+                          onTap: () {
+                            // Ação ao clicar no texto
+                            print('Faça Login! Clicado');
+                          },
+                          splashColor: Colors
+                              .transparent, // Remove o efeito splash ao clicar
+                          highlightColor:
+                              Colors.transparent,
+                          child: const Center(
+                            child: Text(
+                              'Já tem uma conta? Faça Login!',
+                              style: AppTextStyles
+                                  .KodchasanLogin, // Mantém o estilo do texto
+                            ),
+                          ), // Remove o efeito de destaque
+                        )
                       ],
                     ),
                   ),
