@@ -67,7 +67,10 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator()) // Mostra o carregamento
+          ? const Center(child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF003617)),
+          ),
+          ) // Mostra o carregamento
           : Column(
               children: [
                 const SizedBox(height: 15.0),
