@@ -1,8 +1,37 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/constants/app_colors.dart';
+import 'package:teste_flutter/features/onbording/onbording_page.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+    init(); 
+  }
+
+  Timer init() {
+    return Timer(
+      const Duration(seconds: 2),
+      navigateToOnbording,
+    );
+  }
+
+  void navigateToOnbording() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OnboardngPage(),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {

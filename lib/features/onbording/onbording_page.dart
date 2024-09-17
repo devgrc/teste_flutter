@@ -1,7 +1,8 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
+import 'package:teste_flutter/features/login/login_page.dart';
+import 'package:teste_flutter/features/sign_up/sign_up_page.dart'; // Certifique-se de importar a página de login
 
 class OnboardngPage extends StatelessWidget {
   const OnboardngPage({super.key});
@@ -46,8 +47,15 @@ class OnboardngPage extends StatelessWidget {
                             width: 335.32,
                             height: 59.0,
                             child: ElevatedButton(
-                              onPressed: () =>
-                                  log('Botão "Comece Agora" pressionado'),
+                              onPressed: () {
+                                // Substitui a página atual pela SignUpPage ao pressionar "Comece Agora"
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SignUpPage(),
+                                  ),
+                                );
+                              },
                               child: const Text(
                                 'Comece Agora!',
                                 style: AppTextStyles.KodchasanButton,
@@ -58,21 +66,23 @@ class OnboardngPage extends StatelessWidget {
                         const SizedBox(height: 16.0),
                         InkWell(
                           onTap: () {
-                            // Ação ao clicar no texto
-                            print('Faça Login! Clicado');
+                            // Substitui a página atual pela LoginPage ao pressionar "Faça Login!"
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginPage(),
+                              ),
+                            );
                           },
-                          splashColor: Colors
-                              .transparent, // Remove o efeito splash ao clicar
-                          highlightColor:
-                              Colors.transparent,
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
                           child: const Center(
                             child: Text(
                               'Já tem uma conta? Faça Login!',
-                              style: AppTextStyles
-                                  .KodchasanLogin, // Mantém o estilo do texto
+                              style: AppTextStyles.KodchasanLogin,
                             ),
-                          ), // Remove o efeito de destaque
-                        )
+                          ),
+                        ),
                       ],
                     ),
                   ),
