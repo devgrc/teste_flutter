@@ -7,6 +7,7 @@ class AppTextStyles {
     fontFamily: 'Kodchasan',
     fontSize: 50.0,
     fontWeight: FontWeight.normal,
+    color: Color.fromARGB(255, 255, 255, 255)
   );
   static const TextStyle KodchasanLogin = TextStyle(
     fontFamily: 'Kodchasan',

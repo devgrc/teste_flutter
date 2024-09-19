@@ -78,10 +78,12 @@ class LoginPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 20.0),
                       TextFormField(
+                        style: const TextStyle(color: Colors.white),
                           decoration:
                               buildInputDecoration('Nome', 'Digite seu email')),
                       const SizedBox(height: 20.0),
                       TextFormField(
+                        style: const TextStyle(color: Colors.white),
                           decoration: buildInputDecoration(
                               'Senha', 'Insira sua senha')),
                       const SizedBox(height: 70.0),

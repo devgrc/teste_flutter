@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/constants/app_colors.dart';
+import 'package:teste_flutter/common/constants/routes.dart';
 import 'package:teste_flutter/features/onbording/onbording_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -26,11 +27,10 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void navigateToOnbording() {
-    Navigator.pushReplacement(
+    Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => const OnboardngPage(),
-        ));
+        NamedRoutes.initial
+        );
   }
 
   @override

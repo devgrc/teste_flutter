@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
+import 'package:teste_flutter/common/constants/routes.dart';
 import 'package:teste_flutter/features/login/login_page.dart';
 import 'package:teste_flutter/features/sign_up/sign_up_page.dart'; // Certifique-se de importar a página de login
 
@@ -49,11 +50,9 @@ class OnboardngPage extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () {
                                 // Substitui a página atual pela SignUpPage ao pressionar "Comece Agora"
-                                Navigator.push(
+                                Navigator.pushNamed(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const SignUpPage(),
-                                  ),
+                                  NamedRoutes.signUp,
                                 );
                               },
                               child: const Text(
@@ -67,11 +66,9 @@ class OnboardngPage extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             // Substitui a página atual pela LoginPage ao pressionar "Faça Login!"
-                            Navigator.push(
+                            Navigator.pushNamed(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginPage(),
-                              ),
+                              NamedRoutes.login,
                             );
                           },
                           splashColor: Colors.transparent,
