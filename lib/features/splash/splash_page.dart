@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/constants/app_colors.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
-import 'package:teste_flutter/features/onbording/onbording_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
