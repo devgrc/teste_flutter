@@ -11,7 +11,7 @@ class AppTextStyles {
   );
   static const TextStyle KodchasanLogin = TextStyle(
     fontFamily: 'Kodchasan',
-    fontSize: 19.0,
+    fontSize: 17.0,
     fontWeight: FontWeight.normal,
     color: Color.fromARGB(255, 255, 255, 255)
   );
@@ -22,9 +22,9 @@ class AppTextStyles {
     color: Colors.black
   );
   static const TextStyle KantumLogin1 = TextStyle(
-    fontFamily: 'Kantumruy',
+    fontFamily: 'Kodchasan',
     fontSize: 40.0,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.bold,
     color: Color.fromARGB(255, 255, 255, 255)
   );
   static const TextStyle KantumLogin2 = TextStyle(
