@@ -1,9 +1,6 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
-import 'package:teste_flutter/features/login/login_page.dart';
-import 'package:teste_flutter/features/sign_up/sign_up_page.dart'; // Certifique-se de importar a página de login
 
 class OnboardngPage extends StatelessWidget {
   const OnboardngPage({super.key});
