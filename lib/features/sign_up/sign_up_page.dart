@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
+import 'package:teste_flutter/common/constants/routes.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -259,8 +260,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               const SizedBox(height: 15.0),
                               TextButton(
-                                onPressed: () =>
-                                    log('Botão "Faça Login" pressionado'),
+                                onPressed: () {
+                                  Navigator.pushNamed(context, NamedRoutes.login);
+                                },
                                 child: const Text(
                                   'Já tem uma conta? Faça Login!',
                                   style: AppTextStyles.KodchasanLogin,
