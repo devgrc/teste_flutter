@@ -101,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               const Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  'Seja Bem Vindo',
+                                  'Cadastro',
                                   style: AppTextStyles.KantumLogin1,
                                 ),
                               ),
@@ -257,7 +257,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 16.0),
+                              const SizedBox(height: 15.0),
                               TextButton(
                                 onPressed: () =>
                                     log('Botão "Faça Login" pressionado'),
