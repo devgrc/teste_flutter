@@ -15,8 +15,8 @@ class AppTextStyles {
     fontWeight: FontWeight.normal,
     color: Color.fromARGB(255, 255, 255, 255)
   );
-  static const TextStyle KodchasanButton = TextStyle(
-    fontFamily: 'Kodchasan',
+  static const TextStyle KantumruyButton = TextStyle(
+    fontFamily: 'Kantumruy',
     fontSize: 28.0,
     fontWeight: FontWeight.bold,
     color: Colors.black

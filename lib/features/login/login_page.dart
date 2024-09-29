@@ -192,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     child: const Text(
                                       'Login',
-                                      style: AppTextStyles.KodchasanButton,
+                                      style: AppTextStyles.KantumruyButton,
                                     ),
                                   ),
                                 ),
@@ -229,7 +229,7 @@ class MainScreen extends StatelessWidget {
       body: Center(
         child: Text(
           'Tela Principal',
-          style: AppTextStyles.KodchasanButton,
+          style: AppTextStyles.KantumruyButton,
         ),
       ),
     );

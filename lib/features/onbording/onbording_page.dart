@@ -54,7 +54,7 @@ class OnboardngPage extends StatelessWidget {
                               },
                               child: const Text(
                                 'Comece Agora!',
-                                style: AppTextStyles.KodchasanButton,
+                                style: AppTextStyles.KantumruyButton,
                               ),
                             ),
                           ),
