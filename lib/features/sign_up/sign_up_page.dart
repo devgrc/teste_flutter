@@ -252,7 +252,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ),
                                     child: const Text(
                                       'Cadastro',
-                                      style: AppTextStyles.KodchasanButton,
+                                      style: AppTextStyles.KantumruyButton,
                                     ),
                                   ),
                                 ),
@@ -289,7 +289,7 @@ class MainScreen extends StatelessWidget {
       body: Center(
         child: Text(
           'Tela Principal',
-          style: AppTextStyles.KodchasanButton,
+          style: AppTextStyles.KantumruyButton,
         ),
       ),
     );
