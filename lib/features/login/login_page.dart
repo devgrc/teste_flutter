@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
+import 'package:teste_flutter/features/home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,40 +17,37 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
   bool _isLoading = false; // Variável para controlar o carregamento
 
-  // Mesma função de buildInputDecoration usada no SignUpPage
   InputDecoration buildInputDecoration(String labelText, String hintText,
       Widget? prefixIcon, Widget? suffixIcon) {
     return InputDecoration(
       labelText: labelText,
       border: const OutlineInputBorder(),
       labelStyle: const TextStyle(
-          color: Color.fromARGB(209, 255, 255, 255)), // Cor da etiqueta
+          color: Color.fromARGB(209, 255, 255, 255)),
       hintText: hintText,
       hintStyle: const TextStyle(
-          color: Color.fromARGB(103, 255, 255, 255)), // Cor da dica (hint)
+          color: Color.fromARGB(103, 255, 255, 255)),
       enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color(
-                0xFFAFAFAF)), // Cor da borda quando o campo não está em foco
+            color: Color(0xFFAFAFAF)),
       ),
       focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(
             color: Color(0xFFE4E4E4),
-            width: 2.0), // Cor e largura da borda quando o campo está em foco
+            width: 2.0),
       ),
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
     );
   }
 
-  // Função de login (sem validação de confirmação de senha)
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true; // Inicia o carregamento
       });
 
-      // Simula uma requisição de login e, após 2 segundos, navega para a tela principal
+      // Simula uma requisição de login e, após 1 segundo, navega para a HomePage
       Future.delayed(const Duration(seconds: 1), () {
         setState(() {
           _isLoading = false; // Termina o carregamento
@@ -57,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const MainScreen(),
+            builder: (context) => const HomePage(), // Navega para a HomePage
           ),
         );
       });
@@ -70,8 +68,8 @@ class _LoginPageState extends State<LoginPage> {
       body: _isLoading
           ? const Center(
               child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF003617)),
-            )) // Mostra o carregamento
+                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF003617)),
+              )) 
           : Column(
               children: [
                 const SizedBox(height: 15.0),
@@ -115,7 +113,6 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               const SizedBox(height: 40.0),
-                              // Campos de email e senha
                               TextFormField(
                                 controller: _emailController,
                                 style: const TextStyle(color: Colors.white),
@@ -134,8 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                                   if (value == null || value.isEmpty) {
                                     return 'Por favor, insira seu email';
                                   }
-                                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                                      .hasMatch(value)) {
+                                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
                                     return 'Por favor, insira um email válido';
                                   }
                                   return null;
@@ -163,8 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     onPressed: () {
                                       setState(() {
-                                        _isPasswordVisible =
-                                            !_isPasswordVisible;
+                                        _isPasswordVisible = !_isPasswordVisible;
                                       });
                                     },
                                   ),
