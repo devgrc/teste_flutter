@@ -26,16 +26,57 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Corpo da HomePage
-      body: Center(
-        child: _widgetOptions[_selectedIndex],
+      body: Column(
+        children: [
+          // Seção de boas-vindas
+          Padding(
+            padding: const EdgeInsets.only(top: 40.0), // Espaço na parte superior
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alinha os itens nas extremidades
+                children: [
+                  const Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 30.0, // Tamanho do ícone do usuário
+                        backgroundImage: AssetImage('assets/images/avatar.png'), // Adicione sua imagem
+                      ),
+                      SizedBox(width: 16.0), // Espaço entre o ícone e o texto
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Bem-vindo!', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                          Text('Nome do Usuário', style: TextStyle(fontSize: 16.0)),
+                        ],
+                      ),
+                    ],
+                  ),
+                  // Ícone de notificação
+                  IconButton(
+                    icon: const Icon(Icons.notifications),
+                    onPressed: () {
+                      // Lógica para abrir a tela de notificações
+                    },
+                    color: Colors.black, // Cor do ícone
+                    iconSize: 30.0,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Corpo da HomePage
+          Expanded(
+            child: Center(
+              child: _widgetOptions[_selectedIndex],
+            ),
+          ),
+        ],
       ),
-
-      // Barra inferior
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
-        color: Color(0xFF003617),
+        color: const Color(0xFF003617),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -75,7 +116,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      // Botão flutuante
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Lógica para adicionar capital
