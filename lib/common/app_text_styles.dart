@@ -33,5 +33,17 @@ class AppTextStyles {
     fontWeight: FontWeight.w200,
     color: Colors.white
   );
+  static const TextStyle KanitSaldo = TextStyle(
+    fontFamily: 'Kanit',
+    fontSize: 17.0,
+    fontWeight: FontWeight.w300,
+    color: Colors.white
+  );
+  static const TextStyle KodchasanValor = TextStyle(
+    fontFamily: 'Kodchasan',
+    fontSize: 26.0,
+    fontWeight: FontWeight.w600,
+    color: Colors.white
+  );
   
 }
