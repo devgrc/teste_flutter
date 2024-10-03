@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste_flutter/common/app_text_styles.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +12,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    const Center(child: Text('Home Screen')),
+    const Center(child: Text('')),
     const Center(child: Text('Insights Screen')),
     const Center(child: Text('ChatBot Screen')),
     const Center(child: Text('Profile Screen')),
@@ -30,19 +31,19 @@ class _HomePageState extends State<HomePage> {
         children: [
           // Seção de boas-vindas
           Padding(
-            padding: const EdgeInsets.only(top: 40.0), // Espaço na parte superior
+            padding: const EdgeInsets.only(top: 40.0),
             child: Container(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alinha os itens nas extremidades
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Row(
                     children: [
                       CircleAvatar(
-                        radius: 30.0, // Tamanho do ícone do usuário
-                        backgroundImage: AssetImage('assets/images/avatar.png'), // Adicione sua imagem
+                        radius: 30.0,
+                        backgroundImage: AssetImage('assets/images/avatar.png'),
                       ),
-                      SizedBox(width: 16.0), // Espaço entre o ícone e o texto
+                      SizedBox(width: 16.0),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -52,19 +53,38 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  // Ícone de notificação
                   IconButton(
                     icon: const Icon(Icons.notifications),
                     onPressed: () {
                       // Lógica para abrir a tela de notificações
                     },
-                    color: Colors.black, // Cor do ícone
+                    color: Colors.black,
                     iconSize: 30.0,
                   ),
                 ],
               ),
             ),
           ),
+          const SizedBox(height: 35.0),
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(20.0),
+              width: 370.0,
+              height: 111.0,
+              decoration: BoxDecoration(
+                color: const Color(0xFF003617),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Saldo', style: AppTextStyles.KanitSaldo),
+                  Text('R\$ 100,00', style: AppTextStyles.KodchasanValor),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 35.0),
           // Corpo da HomePage
           Expanded(
             child: Center(
