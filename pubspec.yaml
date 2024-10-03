@@ -85,7 +85,7 @@ flutter:
         - asset: assets/fonts/Kanit-Thin.ttf
     - family: Kanit
       fonts:
-        - asset: assets/fonts/Kanit-Thin.ttf
+        - asset: assets/fonts/Kanit-Light.ttf
         
   #
   # For details regarding fonts from package dependencies,
