@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste_flutter/common/app_text_styles.dart';
+import 'package:teste_flutter/common/app_text_styles.dart'; // Certifique-se de ter esse arquivo criado com as devidas definições de estilos de texto.
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -97,52 +97,72 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(
-                  height: 20.0), // Espaçamento entre o container e a imagem
+                  height:
+                      20.0), // Espaçamento entre o container e a linha de botões
               Padding(
-                padding: const EdgeInsets.only(left: 33.0), // Espaçamento à esquerda da imagem
-                child: Align(
-                  alignment: Alignment.centerLeft, // Alinha a imagem à esquerda
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Adicione aqui a ação que o botão deve executar quando clicado
-                      print('Botão pressionado!');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(143.0, 125.0),
-                      backgroundColor: const Color(0xFFB8EFCB), // Cor de fundo
-                      elevation: 7.0,
-                      shadowColor: const Color(0xFF000000),
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(10.0), // Cantos arredondados
-                      ),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(16.0),
-                      width: 75.0,
-                      height: 68.0,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF003617), // Cor do quadrado interno
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
+                padding: const EdgeInsets.only(left: 33.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // Primeiro botão menor à esquerda do botaoAdd
+                    ElevatedButton(
+                      onPressed: () {
+                        print('Botão esquerdo pressionado!');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(43.0, 100.0),
+                        backgroundColor: const Color(0xFFB8EFCB),
+                        elevation: 7.0,
+                        shadowColor: const Color(0xFF000000),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.add_to_photos_rounded, // Ícone de mais
-                          color: Colors.white,
-                          size: 40.0,
-                        ),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.arrow_upward,
+                              color: Colors.black, size: 40.0),
+                          SizedBox(height: 4.0),
+                          Text('Receitas',
+                              style: AppTextStyles.KantumruyDespRecei),
+                        ],
                       ),
                     ),
-                  ),
+                    const SizedBox(width: 14.0), // Espaçamento entre os botões
+                    // Botão principal (botaoAdd)
+                    const botaoAdd(),
+                    const SizedBox(width: 14.0),
+                    // Segundo botão menor à direita do botaoAdd
+                    ElevatedButton(
+                      onPressed: () {
+                        print('Botão direito pressionado!');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(43.0, 100.0),
+                        backgroundColor: const Color(0xFFB8EFCB),
+                        elevation: 7.0,
+                        shadowColor: const Color(0xFF000000),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.arrow_downward,
+                              color: Colors.black, size: 40.0),
+                          SizedBox(height: 4.0),
+                          Text('Despesas',
+                              style: AppTextStyles.KantumruyDespRecei),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-
           const SizedBox(height: 35.0),
           // Corpo da HomePage
           Expanded(
@@ -204,6 +224,50 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+}
+
+class botaoAdd extends StatelessWidget {
+  const botaoAdd({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        print('Botão pressionado!');
+      },
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(123.0, 125.0),
+        backgroundColor: const Color(0xFFB8EFCB), // Cor de fundo
+        elevation: 7.0,
+        shadowColor: const Color(0xFF000000),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0), // Cantos arredondados
+        ),
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        width: 75.0,
+        height: 68.0,
+        decoration: const BoxDecoration(
+          color: Color(0xFF003617), // Cor do quadrado interno
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+        ),
+        child: const Align(
+          alignment: Alignment.center,
+          child: Icon(
+            Icons.add_to_photos_rounded, // Ícone de mais
+            color: Colors.white,
+            size: 40.0,
+          ),
+        ),
+      ),
     );
   }
 }
