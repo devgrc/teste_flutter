@@ -47,8 +47,11 @@ class _HomePageState extends State<HomePage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Bem-vindo!', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-                          Text('Nome do Usuário', style: TextStyle(fontSize: 16.0)),
+                          Text('Bem-vindo!',
+                              style: TextStyle(
+                                  fontSize: 20.0, fontWeight: FontWeight.bold)),
+                          Text('Nome do Usuário',
+                              style: TextStyle(fontSize: 16.0)),
                         ],
                       ),
                     ],
@@ -66,24 +69,80 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 35.0),
-          Center(
-            child: Container(
-              padding: const EdgeInsets.all(20.0),
-              width: 370.0,
-              height: 111.0,
-              decoration: BoxDecoration(
-                color: const Color(0xFF003617),
-                borderRadius: BorderRadius.circular(20.0),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                width: 370.0,
+                height: 111.0,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF003617),
+                  borderRadius: BorderRadius.circular(20.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Saldo', style: AppTextStyles.KanitSaldo),
+                    Text('R\$ 100,00', style: AppTextStyles.KodchasanValor),
+                  ],
+                ),
               ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Saldo', style: AppTextStyles.KanitSaldo),
-                  Text('R\$ 100,00', style: AppTextStyles.KodchasanValor),
-                ],
+              const SizedBox(
+                  height: 20.0), // Espaçamento entre o container e a imagem
+              Padding(
+                padding: const EdgeInsets.only(left: 33.0), // Espaçamento à esquerda da imagem
+                child: Align(
+                  alignment: Alignment.centerLeft, // Alinha a imagem à esquerda
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Adicione aqui a ação que o botão deve executar quando clicado
+                      print('Botão pressionado!');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(143.0, 125.0),
+                      backgroundColor: const Color(0xFFB8EFCB), // Cor de fundo
+                      elevation: 7.0,
+                      shadowColor: const Color(0xFF000000),
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10.0), // Cantos arredondados
+                      ),
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.all(16.0),
+                      width: 75.0,
+                      height: 68.0,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF003617), // Cor do quadrado interno
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.add_to_photos_rounded, // Ícone de mais
+                          color: Colors.white,
+                          size: 40.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
+
           const SizedBox(height: 35.0),
           // Corpo da HomePage
           Expanded(
