@@ -10,8 +10,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double get TextScaleFactor => MediaQuery.of(context).size.width < 360.0 ? 0.7 : 1.0;
-  double get iconsize => MediaQuery.of(context).size.width < 360.0 ? 16.0 : 24.0;
+  double get TextScaleFactor =>
+      MediaQuery.of(context).size.width < 360.0 ? 0.7 : 1.0;
+  double get iconsize =>
+      MediaQuery.of(context).size.width < 360.0 ? 16.0 : 24.0;
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
@@ -33,7 +35,8 @@ class _HomePageState extends State<HomePage> {
     final textScaleFactor = MediaQuery.textScaleFactorOf(context);
 
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        color: const Color(0x00b8efcb).withOpacity(0.3),
         child: Column(
           children: [
             // Seção de boas-vindas
@@ -48,7 +51,8 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const CircleAvatar(
                           radius: 30.0,
-                          backgroundImage: AssetImage('assets/images/avatar.png'),
+                          backgroundImage:
+                              AssetImage('assets/images/avatar.png'),
                         ),
                         SizedBox(width: 16.0),
                         Column(
@@ -57,13 +61,14 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               'Bem-vindo!',
                               style: TextStyle(
-                                fontSize: 20.0 * textScaleFactor, 
+                                fontSize: 20.0 * textScaleFactor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
                               'Nome do Usuário',
-                              style: TextStyle(fontSize: 16.0 * textScaleFactor),
+                              style:
+                                  TextStyle(fontSize: 16.0 * textScaleFactor),
                             ),
                           ],
                         ),
@@ -104,8 +109,12 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Saldo', style: AppTextStyles.KanitSaldo.copyWith(fontSize: 20 * textScaleFactor)),
-                      Text('R\$ 100,00', style: AppTextStyles.KodchasanValor.copyWith(fontSize: 16 * textScaleFactor)),
+                      Text('Saldo',
+                          style: AppTextStyles.KanitSaldo.copyWith(
+                              fontSize: 20 * textScaleFactor)),
+                      Text('R\$ 100,00',
+                          style: AppTextStyles.KodchasanValor.copyWith(
+                              fontSize: 16 * textScaleFactor)),
                     ],
                   ),
                 ),
@@ -116,14 +125,16 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Botão Receitas
-                      Expanded(
+                      Container(
+                        height: 88.0, // Altura definida
+                        width: 100.0, // Largura definida
                         child: ElevatedButton(
                           onPressed: () {
-                            print('Botão esquerdo pressionado!');
+                            print('Botão Calendário pressionado!');
                           },
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(70.w, 100.h),
-                            backgroundColor: const Color(0xFFB8EFCB),
+                            backgroundColor:
+                                const Color.fromARGB(255, 255, 255, 255),
                             elevation: 7.0,
                             shadowColor: const Color(0xFF000000),
                             shape: RoundedRectangleBorder(
@@ -133,31 +144,39 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              const Icon(Icons.calendar_month_rounded,
+                                  color: Colors.black, size: 40.0),
                               const SizedBox(
-                                height: 40.0,
-                                width: 52.0,
-                                child: Icon(Icons.arrow_upward,
-                                    color: Colors.black, size: 40.0),
+                                  height:
+                                      4.0), // Espaçamento entre ícone e texto
+                              Text(
+                                'Calendário', // Mude aqui para o texto desejado
+                                style:
+                                    AppTextStyles.KantumruyDespRecei.copyWith(
+                                        fontSize: 11 * textScaleFactor),
+                                textAlign: TextAlign.center,
+                                overflow:
+                                    TextOverflow.ellipsis, // Para evitar quebra
                               ),
-                              SizedBox(height: 4.0),
-                              Text('Receitas',
-                                  style: AppTextStyles.KantumruyDespRecei.copyWith(fontSize: 16 * textScaleFactor)),
                             ],
                           ),
                         ),
                       ),
+
                       SizedBox(width: 20.w),
                       const BotaoAdd(),
                       SizedBox(width: 20.w),
                       // Botão Despesas
-                      Expanded(
+                      Container(
+                        height: 88.0, // Altura definida
+                        width: 100.0, // Largura definida
                         child: ElevatedButton(
                           onPressed: () {
-                            print('Botão direito pressionado!');
+                            print('Botão Lembretes pressionado!');
                           },
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(70.w, 100.h),
-                            backgroundColor: const Color(0xFFB8EFCB),
+                            backgroundColor:
+                                const Color.fromARGB(255, 255, 255, 255),
                             elevation: 7.0,
                             shadowColor: const Color(0xFF000000),
                             shape: RoundedRectangleBorder(
@@ -167,15 +186,20 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              const Icon(Icons.receipt_long_rounded,
+                                  color: Colors.black, size: 40.0),
                               const SizedBox(
-                                height: 40.0,
-                                width: 40.0,
-                                child: Icon(Icons.arrow_downward,
-                                    color: Colors.black, size: 40.0),
+                                  height:
+                                      4.0), // Espaçamento entre ícone e texto
+                              Text(
+                                'Lembretes', // Mude aqui para o texto desejado
+                                style:
+                                    AppTextStyles.KantumruyDespRecei.copyWith(
+                                        fontSize: 11 * textScaleFactor),
+                                textAlign: TextAlign.center,
+                                overflow:
+                                    TextOverflow.ellipsis, // Para evitar quebra
                               ),
-                              const SizedBox(height: 4.0),
-                              Text('Despesas',
-                                  style: AppTextStyles.KantumruyDespRecei.copyWith(fontSize: 16 * textScaleFactor)),
                             ],
                           ),
                         ),
