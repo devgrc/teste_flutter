@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; // Adicione esta linha
 import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/common/extensions/sizes.dart';
 
@@ -11,6 +12,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  double _currentBalance = 50.00; // Saldo inicial
+  final double _maxBalance = 100.00; // Saldo máximo para a barra de progresso
 
   final List<Widget> _widgetOptions = <Widget>[
     const Center(child: Text('')),
@@ -25,10 +28,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // Método para calcular a largura da barra de progresso
+  double _getProgressBarWidth() {
+    return (_currentBalance / _maxBalance) * 326; // 326 é a largura total da barra
+  }
+
   @override
   Widget build(BuildContext context) {
     Sizes.init(context);
     final textScaleFactor = MediaQuery.textScaleFactorOf(context);
+
+    // Formata o saldo para o formato desejado
+    String formattedBalance = NumberFormat.simpleCurrency(
+      locale: 'pt_BR', // Define o locale para o Brasil
+      decimalDigits: 2,
+    ).format(_currentBalance);
 
     return Scaffold(
       extendBody: true,
@@ -119,11 +133,21 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Flexible(
                             child: Text(
-                              'R\$ 100,00',
+                              formattedBalance, // Usando o saldo formatado
                               style: AppTextStyles.KodchasanValor.copyWith(
                                 fontSize: 16 * textScaleFactor,
                                 overflow: TextOverflow.ellipsis,
                               ),
+                            ),
+                          ),
+                          // BARRA DE PROGRESSO   
+                          SizedBox(height: 10.h),
+                          Container(
+                            width: _getProgressBarWidth(),
+                            height: 8.61.h,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFB8EFCB).withOpacity(0.65),
+                              borderRadius: BorderRadius.circular(4.3),
                             ),
                           ),
                         ],
