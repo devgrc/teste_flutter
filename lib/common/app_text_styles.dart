@@ -36,7 +36,7 @@ class AppTextStyles {
   static const TextStyle KodchasanValor = TextStyle(
       fontFamily: 'Kodchasan',
       fontSize: 26.0,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w900,
       color: Colors.white);
   static const TextStyle KantumruyDespRecei = TextStyle(
       fontFamily: 'Kantumruy',
