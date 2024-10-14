@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/constants/app_colors.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
+import 'package:teste_flutter/common/extensions/sizes.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -15,6 +16,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     init(); 
+    WidgetsBinding.instance.addPostFrameCallback((_) => Sizes.init(context));
   }
 
   Timer init() {
