@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
     Navigator.pushReplacementNamed(
         context,
         NamedRoutes.initial
-        );
+    );
   }
 
   @override
@@ -39,12 +39,21 @@ class _SplashPageState extends State<SplashPage> {
       decoration: const BoxDecoration(
         color: AppColors.primalWhite,
       ),
-      child: Center(
-        child: Image.asset(
-          'assets/images/logo.png',
-          width: 252,
-          height: 237,
-        ),
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: const Color(0x00b8efcb).withOpacity(0.3),
+            ),
+          ),
+          Center(
+            child: Image.asset(
+              'assets/images/logo.png',
+              width: 252,
+              height: 237,
+            ),
+          ),
+        ],
       ),
     );
   }
