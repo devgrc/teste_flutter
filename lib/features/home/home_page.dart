@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  double _currentBalance = 50.00; // Saldo inicial
+  double _currentBalance = 80.00; // Saldo inicial
   final double _maxBalance = 100.00; // Saldo máximo para a barra de progresso
 
   final List<Widget> _widgetOptions = <Widget>[
