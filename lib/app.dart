@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: NamedRoutes.signUp,
+      initialRoute: NamedRoutes.login,
       routes: {
         NamedRoutes.initial: (context) => const OnboardngPage(),
         NamedRoutes.splash: (context) => const SplashPage(),
