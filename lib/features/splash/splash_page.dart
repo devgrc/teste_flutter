@@ -1,8 +1,7 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/constants/app_colors.dart';
-import 'package:teste_flutter/common/constants/routes.dart';
-import 'package:teste_flutter/common/extensions/sizes.dart';
+import 'splash_controller.dart';
+import 'splash_state.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -12,25 +11,18 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  late SplashController _controller;
+
   @override
   void initState() {
     super.initState();
-    init(); 
-    WidgetsBinding.instance.addPostFrameCallback((_) => Sizes.init(context));
+    _controller = SplashController(context, _updateState);
+    _controller.init();
   }
 
-  Timer init() {
-    return Timer(
-      const Duration(seconds: 2),
-      navigateToOnbording,
-    );
-  }
-
-  void navigateToOnbording() {
-    Navigator.pushReplacementNamed(
-        context,
-        NamedRoutes.initial
-    );
+  void _updateState(SplashState state) {
+    setState(() {
+    });
   }
 
   @override
@@ -53,6 +45,7 @@ class _SplashPageState extends State<SplashPage> {
               height: 237,
             ),
           ),
+          // Você pode exibir o estado atual aqui, se necessário
         ],
       ),
     );
