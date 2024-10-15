@@ -30,7 +30,8 @@ class _HomePageState extends State<HomePage> {
 
   // Método para calcular a largura da barra de progresso
   double _getProgressBarWidth() {
-    return (_currentBalance / _maxBalance) * 326; // 326 é a largura total da barra
+    return (_currentBalance / _maxBalance) *
+        326; // 326 é a largura total da barra
   }
 
   @override
@@ -140,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          // BARRA DE PROGRESSO   
+                          // BARRA DE PROGRESSO
                           SizedBox(height: 10.h),
                           Container(
                             width: _getProgressBarWidth(),
