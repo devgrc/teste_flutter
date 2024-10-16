@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  double _currentBalance = 80.00; // Saldo inicial
+  final double _currentBalance = 80.00; // Saldo inicial
   final double _maxBalance = 100.00; // Saldo máximo para a barra de progresso
 
   final List<Widget> _widgetOptions = <Widget>[
@@ -161,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           // Botão Receitas
-                          Container(
+                          SizedBox(
                             height: 88.0.h,
                             width: 100.0.w,
                             child: ElevatedButton(
@@ -199,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                           const BotaoAdd(),
                           SizedBox(width: 20.w),
                           // Botão Despesas
-                          Container(
+                          SizedBox(
                             height: 88.0.h,
                             width: 100.0.w,
                             child: ElevatedButton(
