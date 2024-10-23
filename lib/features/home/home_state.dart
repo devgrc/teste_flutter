@@ -1,11 +1,11 @@
-class HomeState {
-  int selectedIndex;
-  double currentBalance;
-  double maxBalance;
+abstract class AddSaldoState {}
 
-  HomeState({
-    this.selectedIndex = 0,
-    this.currentBalance = 80.00,
-    this.maxBalance = 100.00,
-  });
+class AddSaldoStateLoading extends AddSaldoState {}
+
+class AddSaldoStateSuccess extends AddSaldoState {}
+
+class AddSaldoStateError extends AddSaldoState {
+  final String message;
+
+  AddSaldoStateError(this.message);
 }
