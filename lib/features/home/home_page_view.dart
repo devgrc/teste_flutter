@@ -71,7 +71,7 @@ class HomePageView extends StatelessWidget {
                   children: [
                     Container(
                       padding: EdgeInsets.all(20.h),
-                      width: Sizes().width * 0.9, // Ajuste para 90% da largura
+                      width: Sizes().width * 0.9,
                       decoration: BoxDecoration(
                         color: const Color(0xFF003617),
                         borderRadius: BorderRadius.circular(20.0),
@@ -119,7 +119,6 @@ class HomePageView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // Botão Receitas
                           SizedBox(
                             height: 88.0.h,
                             width: 100.0.w,
@@ -151,9 +150,39 @@ class HomePageView extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: 20.w),
-                          const BotaoAdd(),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Lógica para adicionar saldo
+                              print('Botão Adicionar pressionado!');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(123, 125),
+                              backgroundColor: const Color(0xFFB8EFCB),
+                              elevation: 7.0,
+                              shadowColor: const Color(0xFF000000),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            child: Container(
+                              padding: const EdgeInsets.all(16.0),
+                              width: 75.0,
+                              height: 68.0,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF003617),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.add_to_photos_rounded,
+                                  color: Colors.white,
+                                  size: 40.0,
+                                ),
+                              ),
+                            ),
+                          ),
                           SizedBox(width: 20.w),
-                          // Botão Despesas
                           SizedBox(
                             height: 88.0.h,
                             width: 100.0.w,
@@ -309,45 +338,6 @@ class HomePageView extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
-  }
-}
-
-class BotaoAdd extends StatelessWidget {
-  const BotaoAdd({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        print('Botão pressionado!');
-      },
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(123.w, 125.h),
-        backgroundColor: const Color(0xFFB8EFCB),
-        elevation: 7.0,
-        shadowColor: const Color(0xFF000000),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(16.0),
-        width: 75.0,
-        height: 68.0,
-        decoration: const BoxDecoration(
-          color: Color(0xFF003617),
-          shape: BoxShape.circle,
-        ),
-        child: const Align(
-          alignment: Alignment.center,
-          child: Icon(
-            Icons.add_to_photos_rounded,
-            color: Colors.white,
-            size: 40.0,
-          ),
-        ),
-      ),
     );
   }
 }
