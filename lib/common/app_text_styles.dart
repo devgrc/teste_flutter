@@ -28,6 +28,11 @@ class AppTextStyles {
       fontSize: 20.0,
       fontWeight: FontWeight.w200,
       color: Colors.white);
+  static const TextStyle SubSaldo = TextStyle(
+      fontFamily: 'Kantumruy',
+      fontSize: 17.0,
+      fontWeight: FontWeight.w200,
+      color: Colors.white);
   static const TextStyle KanitSaldo = TextStyle(
       fontFamily: 'Kanit',
       fontSize: 17.0,
