@@ -202,7 +202,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             onPressed: () {
                               controller.submitForm(() {
                                 // Chama a navegação para a home
-                                Navigator.pushReplacementNamed(context, NamedRoutes.home);
+                                Navigator.pushReplacementNamed(context, NamedRoutes.addSaldo);
                               });
                               setState(() {
                                 // Atualiza o estado após chamar a função
