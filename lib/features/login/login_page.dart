@@ -36,8 +36,8 @@ class _LoginPageState extends State<LoginPage> {
         _emailController.text,
         _passwordController.text,
         () {
-          // Navegação para a HomePage após o sucesso do login
-          Navigator.pushReplacementNamed(context, NamedRoutes.home);
+          // Navegação para a AddSaldoPage após o sucesso do login
+          Navigator.pushReplacementNamed(context, NamedRoutes.addSaldo);
         },
       );
     }
