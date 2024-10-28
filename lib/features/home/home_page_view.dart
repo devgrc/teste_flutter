@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:teste_flutter/common/constants/routes.dart';
 import 'home_controller.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/common/extensions/sizes.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class HomePageView extends StatelessWidget {
   final HomeController controller;
@@ -30,7 +33,8 @@ class HomePageView extends StatelessWidget {
                       children: [
                         const CircleAvatar(
                           radius: 30.0,
-                          backgroundImage: AssetImage('assets/images/avatar.png'),
+                          backgroundImage:
+                              AssetImage('assets/images/avatar.png'),
                         ),
                         SizedBox(width: 16.w),
                         Column(
@@ -45,7 +49,8 @@ class HomePageView extends StatelessWidget {
                             ),
                             Text(
                               'Nome do Usuário',
-                              style: TextStyle(fontSize: 16.0 * textScaleFactor),
+                              style:
+                                  TextStyle(fontSize: 16.0 * textScaleFactor),
                             ),
                           ],
                         ),
@@ -127,7 +132,8 @@ class HomePageView extends StatelessWidget {
                                 print('Botão Calendário pressionado!');
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 255, 255, 255),
                                 elevation: 7.0,
                                 shadowColor: const Color(0xFF000000),
                                 shape: RoundedRectangleBorder(
@@ -137,11 +143,14 @@ class HomePageView extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(Icons.calendar_month_rounded, color: Colors.black, size: 40.0),
+                                  const Icon(Icons.calendar_month_rounded,
+                                      color: Colors.black, size: 40.0),
                                   const SizedBox(height: 4.0),
                                   Text(
                                     'Calendário',
-                                    style: AppTextStyles.KantumruyDespRecei.copyWith(fontSize: 11 * textScaleFactor),
+                                    style: AppTextStyles.KantumruyDespRecei
+                                        .copyWith(
+                                            fontSize: 11 * textScaleFactor),
                                     textAlign: TextAlign.center,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -152,7 +161,8 @@ class HomePageView extends StatelessWidget {
                           SizedBox(width: 20.w),
                           ElevatedButton(
                             onPressed: () {
-                              // Lógica para adicionar saldo
+                              Navigator.pushNamed(
+                                  context, NamedRoutes.transaction);
                               print('Botão Adicionar pressionado!');
                             },
                             style: ElevatedButton.styleFrom(
@@ -191,7 +201,8 @@ class HomePageView extends StatelessWidget {
                                 print('Botão Lembretes pressionado!');
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 255, 255, 255),
                                 elevation: 7.0,
                                 shadowColor: const Color(0xFF000000),
                                 shape: RoundedRectangleBorder(
@@ -201,11 +212,14 @@ class HomePageView extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(Icons.receipt_long_rounded, color: Colors.black, size: 40.0),
+                                  const Icon(Icons.receipt_long_rounded,
+                                      color: Colors.black, size: 40.0),
                                   const SizedBox(height: 4.0),
                                   Text(
                                     'Lembretes',
-                                    style: AppTextStyles.KantumruyDespRecei.copyWith(fontSize: 11 * textScaleFactor),
+                                    style: AppTextStyles.KantumruyDespRecei
+                                        .copyWith(
+                                            fontSize: 11 * textScaleFactor),
                                     textAlign: TextAlign.center,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -241,40 +255,34 @@ class HomePageView extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 16.0),
-                          SizedBox(
-                            height: 200.0.h,
-                            child: ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              padding: EdgeInsets.zero,
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                final color = index % 2 == 0 ? Colors.green : Colors.red;
-                                final value = index % 2 == 0 ? '+ R\$ 100,00' : '- R\$ 50,00';
-                                const date = '01/01/2023';
-
-                                return ListTile(
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  leading: Container(
-                                    decoration: const BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
-                                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          Consumer<HomeController>(
+                            builder: (context, controller, _) {
+                              return ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: controller.transactions.length,
+                                itemBuilder: (context, index) {
+                                  final transaction =
+                                      controller.transactions[index];
+                                  final formattedValue = NumberFormat.currency(
+                                          locale: 'pt_BR', symbol: '')
+                                      .format(transaction.valor);
+                                  return ListTile(
+                                    title: Text(transaction.nome),
+                                    subtitle: Text(
+                                        '${transaction.categoria} - ${transaction.tipo}'),
+                                    trailing: Text(
+                                      formattedValue,
+                                      style: TextStyle(
+                                        color: transaction.tipo == 'Receita'
+                                            ? Colors.green
+                                            : Colors.red,
+                                      ),
                                     ),
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: const Icon(Icons.monetization_on_rounded),
-                                  ),
-                                  title: const Text('Transferência', style: AppTextStyles.TituloDesRec),
-                                  subtitle: const Text('Fundos de Emergência', style: AppTextStyles.SubCategoria),
-                                  trailing: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      const Text(date, style: AppTextStyles.Date),
-                                      Text(value, style: AppTextStyles.Valor.apply(color: color)),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -286,7 +294,7 @@ class HomePageView extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
+       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
         color: const Color(0xFF003617),
@@ -341,3 +349,4 @@ class HomePageView extends StatelessWidget {
     );
   }
 }
+    
