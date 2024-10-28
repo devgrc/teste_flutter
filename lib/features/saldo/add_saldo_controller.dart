@@ -13,14 +13,14 @@ class AddSaldoController {
 
   void submitForm(String amount, VoidCallback onSuccess) {
     _stateController.add(AddSaldoStateLoading());
-
+  
     // Simulação de uma chamada de API
     Future.delayed(const Duration(seconds: 2), () {
       try {
         // Lógica de adição de saldo
         double parsedAmount = double.parse(amount);
         if (parsedAmount >= 0) {
-          homeController.addToBalance(parsedAmount); // Atualiza o saldo
+          homeController.updateBalance(parsedAmount); // Atualiza o saldo
           _stateController.add(AddSaldoStateSuccess());
           onSuccess();
         } else {
