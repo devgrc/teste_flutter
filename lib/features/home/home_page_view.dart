@@ -254,7 +254,7 @@ class HomePageView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 16.0),
+                          const SizedBox(height: 0.0),
                           Consumer<HomeController>(
                             builder: (context, controller, _) {
                               return ListView.builder(
@@ -267,17 +267,86 @@ class HomePageView extends StatelessWidget {
                                   final formattedValue = NumberFormat.currency(
                                           locale: 'pt_BR', symbol: '')
                                       .format(transaction.valor);
-                                  return ListTile(
-                                    title: Text(transaction.nome),
-                                    subtitle: Text(
-                                        '${transaction.categoria} - ${transaction.tipo}'),
-                                    trailing: Text(
-                                      formattedValue,
-                                      style: TextStyle(
-                                        color: transaction.tipo == 'Receita'
-                                            ? Colors.green
-                                            : Colors.red,
-                                      ),
+                                  final formattedDate = DateFormat('dd/MM/yyyy')
+                                      .format(transaction.data);
+
+                                  return Container(
+                                    width: 369.w,
+                                    height: 66.h,
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: 8.h,
+                                        horizontal: 16
+                                            .w), // Espaçamento nas laterais do Container
+                                    padding: EdgeInsets.all(8
+                                        .h), // Padding interno de 8 para dar espaçamento entre os componentes
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.2),
+                                          spreadRadius: 2,
+                                          blurRadius: 5,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Icon(transaction.icon,
+                                                color: const Color.fromARGB(
+                                                    255, 0, 0, 0),
+                                                size: 30.h), // Ícone
+                                            SizedBox(width: 8),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center, // Centraliza verticalmente
+                                              children: [
+                                                Text(transaction.nome,
+                                                    style: TextStyle(
+                                                        fontSize: 16.h)),
+                                                Text(
+                                                  '${transaction.categoria} - ${transaction.tipo}',
+                                                  style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 14.h),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .center, // Centraliza verticalmente
+                                          children: [
+                                            Text(
+                                              formattedDate,
+                                              style: TextStyle(
+                                                fontSize: 12.h,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            Text(
+                                              formattedValue,
+                                              style: TextStyle(
+                                                fontSize: 16.h,
+                                                color: transaction.tipo ==
+                                                        'Receita'
+                                                    ? Colors.green
+                                                    : Colors.red,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   );
                                 },
@@ -294,7 +363,7 @@ class HomePageView extends StatelessWidget {
           ],
         ),
       ),
-       bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
         color: const Color(0xFF003617),
@@ -349,4 +418,3 @@ class HomePageView extends StatelessWidget {
     );
   }
 }
-    
