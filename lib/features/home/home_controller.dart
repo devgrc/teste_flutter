@@ -8,6 +8,7 @@ class ReceitaDespesa {
   final String categoria;
   final DateTime data;
   final bool isCredit;
+  final IconData icon;
 
   ReceitaDespesa({
     required this.nome,
@@ -16,6 +17,7 @@ class ReceitaDespesa {
     required this.categoria,
     required this.data,
     required this.isCredit,
+    required this.icon,
   });
 }
 
