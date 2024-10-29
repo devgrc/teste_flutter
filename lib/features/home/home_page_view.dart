@@ -99,12 +99,16 @@ class HomePageView extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
-                            controller.formattedBalance,
-                            style: AppTextStyles.KodchasanValor.copyWith(
-                              fontSize: 16 * textScaleFactor,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                          Consumer<HomeController>(
+                            builder: (context, controller, child) {
+                              return Text(
+                                controller.formattedBalance,
+                                style: AppTextStyles.KodchasanValor.copyWith(
+                                  fontSize: 16 * textScaleFactor,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              );
+                            },
                           ),
                           SizedBox(height: 10.h),
                           Container(
