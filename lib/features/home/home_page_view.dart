@@ -110,15 +110,20 @@ class HomePageView extends StatelessWidget {
                               );
                             },
                           ),
+                          // ProgressBar
                           SizedBox(height: 10.h),
-                          Container(
-                            width: controller.progressBarWidth,
-                            height: 8.61.h,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFB8EFCB).withOpacity(0.65),
-                              borderRadius: BorderRadius.circular(4.3),
-                            ),
-                          ),
+                          Consumer<HomeController>(
+                              builder: (context, controller, child) {
+                            return Container(
+                              width: controller.progressBarWidth,
+                              height: 8.61.h,
+                              decoration: BoxDecoration(
+                                color:
+                                    const Color(0xFFB8EFCB).withOpacity(0.65),
+                                borderRadius: BorderRadius.circular(4.3),
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
