@@ -5,7 +5,7 @@ import 'package:teste_flutter/features/chatbot/chat_bot_page.dart';
 import 'package:teste_flutter/features/onbording/onbording_page.dart';
 import 'package:teste_flutter/features/sign_up/sign_up_page.dart';
 import 'package:teste_flutter/features/splash/splash_page.dart';
-import 'package:teste_flutter/features/transaction/add_transaction_view.dart';
+import 'package:teste_flutter/features/transaction/add_transaction_page.dart';
 import 'features/home/home_controller.dart';
 import 'features/home/home_page.dart';
 import 'features/login/login_page.dart';
@@ -21,7 +21,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HomeController()),
       ],
       child: MaterialApp(
-        initialRoute: NamedRoutes.home,
+        initialRoute: NamedRoutes.addSaldo,
         routes: {
           NamedRoutes.signUp: (context) => const SignUpPage(),
           NamedRoutes.login: (context) => const LoginPage(),
