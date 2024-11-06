@@ -28,6 +28,16 @@ class AppTextStyles {
       fontSize: 20.0,
       fontWeight: FontWeight.w200,
       color: Colors.white);
+  static const TextStyle KantumAddTandaction = TextStyle(
+      fontFamily: 'Kantumruy',
+      fontSize: 20.0,
+      fontWeight: FontWeight.w500,
+      color: Color.fromARGB(255, 0, 0, 0));
+  static const TextStyle KodchasanAddTandaction = TextStyle(
+      fontFamily: 'Kodchasan',
+      fontSize: 25.0,
+      fontWeight: FontWeight.w500,
+      color: Color.fromARGB(255, 255, 255, 255));
   static const TextStyle SubSaldo = TextStyle(
       fontFamily: 'Kantumruy',
       fontSize: 17.0,

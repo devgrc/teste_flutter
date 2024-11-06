@@ -21,7 +21,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HomeController()),
       ],
       child: MaterialApp(
-        initialRoute: NamedRoutes.addSaldo,
+        initialRoute: NamedRoutes.home,
         routes: {
           NamedRoutes.signUp: (context) => const SignUpPage(),
           NamedRoutes.login: (context) => const LoginPage(),
