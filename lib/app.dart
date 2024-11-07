@@ -31,6 +31,7 @@ class App extends StatelessWidget {
           NamedRoutes.splash: (context) => const SplashPage(),
           NamedRoutes.chat: (context) => const ChatBotPage(),
           NamedRoutes.transaction: (context) => AddTransactionPage(), // Adicionando a rota para adicionar transação
+          NamedRoutes.chat: (context) => ChatBotPage(), // Adicionando a rota para adicionar transação
         },
       ),
     );
