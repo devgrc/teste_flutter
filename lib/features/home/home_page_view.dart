@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
+import 'package:teste_flutter/features/chatbot/chat_bot_page.dart';
+import 'package:teste_flutter/features/insights/graficos_page.dart';
 import 'home_controller.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/common/extensions/sizes.dart';
@@ -18,24 +20,93 @@ class HomePageView extends StatelessWidget {
 
     return Scaffold(
       extendBody: true,
-      body: Container(
-        color: const Color(0x00b8efcb).withOpacity(0.3),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 40.h),
-              child: Container(
-                padding: EdgeInsets.all(16.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 30.0,
-                          backgroundImage:
-                              AssetImage('assets/images/avatar.png'),
-                        ),
+      body: Consumer<HomeController>(
+        builder: (context, controller, child) {
+          // Lista de páginas para navegação
+          final List<Widget> pages = [
+            _buildHomePage(context, textScaleFactor), // HomePage
+            const GraficosPage(), // Página de Insights
+            const ChatBotPage(),  // Página do ChatBot
+          ];
+
+         return pages[controller.state.selectedIndex.clamp(0, pages.length - 1)]; // Exibe a página de acordo com o índice
+        },
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        color: const Color(0xFF003617),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.home),
+              color: controller.state.selectedIndex == 0
+                  ? const Color.fromARGB(255, 255, 255, 255)
+                  : Colors.grey.withOpacity(0.5),
+              onPressed: () => controller.updateSelectedIndex(0),
+              iconSize: 35.0,
+            ),
+            IconButton(
+              icon: const Icon(Icons.insights),
+              color: controller.state.selectedIndex == 1
+                  ? const Color.fromARGB(255, 255, 255, 255)
+                  : Colors.grey.withOpacity(0.5),
+              onPressed: () => controller.updateSelectedIndex(1),
+              iconSize: 35.0,
+            ),
+            const SizedBox(width: 48),
+            IconButton(
+              icon: const Icon(Icons.chat),
+              color: controller.state.selectedIndex == 2
+                  ? const Color.fromARGB(255, 255, 255, 255)
+                  : Colors.grey.withOpacity(0.5),
+              onPressed: () => controller.updateSelectedIndex(2), // Quando clicar no chat, vai para a página do chatbot
+              iconSize: 35.0,
+            ),
+            IconButton(
+              icon: const Icon(Icons.person),
+              color: controller.state.selectedIndex == 3
+                  ? const Color.fromARGB(255, 255, 255, 255)
+                  : Colors.grey.withOpacity(0.5),
+              onPressed: () => controller.updateSelectedIndex(3),
+              iconSize: 35.0,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Lógica para adicionar capital
+        },
+        shape: const CircleBorder(),
+        backgroundColor: const Color(0xFFB8EFCB),
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  // Método para construir a página inicial (HomePage)
+  Widget _buildHomePage(BuildContext context, double textScaleFactor) {
+    return Container(
+      color: const Color(0x00b8efcb).withOpacity(0.3),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 40.h),
+            child: Container(
+              padding: EdgeInsets.all(16.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 30.0,
+                        backgroundImage:
+                            AssetImage('assets/images/avatar.png'),
+                      ),
                         SizedBox(width: 16.w),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -371,59 +442,6 @@ class HomePageView extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        color: const Color(0xFF003617),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.home),
-              color: controller.state.selectedIndex == 0
-                  ? const Color.fromARGB(255, 255, 255, 255)
-                  : Colors.grey.withOpacity(0.5),
-              onPressed: () => controller.updateSelectedIndex(0),
-              iconSize: 35.0,
-            ),
-            IconButton(
-              icon: const Icon(Icons.insights),
-              color: controller.state.selectedIndex == 1
-                  ? const Color.fromARGB(255, 255, 255, 255)
-                  : Colors.grey.withOpacity(0.5),
-              onPressed: () => controller.updateSelectedIndex(1),
-              iconSize: 35.0,
-            ),
-            const SizedBox(width: 48),
-            IconButton(
-              icon: const Icon(Icons.chat),
-              color: controller.state.selectedIndex == 2
-                  ? const Color.fromARGB(255, 255, 255, 255)
-                  : Colors.grey.withOpacity(0.5),
-              onPressed: () => controller.updateSelectedIndex(2),
-              iconSize: 35.0,
-            ),
-            IconButton(
-              icon: const Icon(Icons.person),
-              color: controller.state.selectedIndex == 3
-                  ? const Color.fromARGB(255, 255, 255, 255)
-                  : Colors.grey.withOpacity(0.5),
-              onPressed: () => controller.updateSelectedIndex(3),
-              iconSize: 35.0,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Lógica para adicionar capital
-        },
-        shape: const CircleBorder(),
-        backgroundColor: const Color(0xFFB8EFCB),
-        child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
+      );
   }
 }
