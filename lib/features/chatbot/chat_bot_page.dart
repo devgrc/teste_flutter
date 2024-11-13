@@ -107,30 +107,32 @@ class _ChatBotPageState extends State<ChatBotPage> with TickerProviderStateMixin
         ),
         backgroundColor: const Color(0xFF003617), // Cor do AppBar (verde escuro)
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: AnimatedList(
-              key: _listKey,
-              reverse: true, // Para a lista começar do final (mais recente)
-              initialItemCount: _messages.length,
-              itemBuilder: (context, index, animation) {
-                final message = _messages[index];
-                return FadeTransition(
-                  opacity: animation,
-                  child: SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(0, 0.5),
-                      end: Offset.zero,
-                    ).animate(animation),
-                    child: _buildMessage(message['sender']!, message['message']!, index),
-                  ),
-                );
-              },
+      body: SafeArea( // Envolver com SafeArea para respeitar a área de segurança da tela
+        child: Column(
+          children: [
+            Expanded(
+              child: AnimatedList(
+                key: _listKey,
+                reverse: true, // Para a lista começar do final (mais recente)
+                initialItemCount: _messages.length,
+                itemBuilder: (context, index, animation) {
+                  final message = _messages[index];
+                  return FadeTransition(
+                    opacity: animation,
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(0, 0.5),
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: _buildMessage(message['sender']!, message['message']!, index),
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-          _buildInputField(),
-        ],
+            _buildInputField(),
+          ],
+        ),
       ),
     );
   }
