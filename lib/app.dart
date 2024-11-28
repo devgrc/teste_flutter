@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
 import 'package:teste_flutter/features/chatbot/chat_bot_page.dart';
 import 'package:teste_flutter/features/onbording/onbording_page.dart';
+import 'package:teste_flutter/features/perfil/perfil_page.dart';
 import 'package:teste_flutter/features/sign_up/sign_up_page.dart';
 import 'package:teste_flutter/features/splash/splash_page.dart';
 import 'package:teste_flutter/features/transaction/add_transaction_page.dart';
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HomeController()),
       ],
       child: MaterialApp(
-        initialRoute: NamedRoutes.home,
+        initialRoute: NamedRoutes.perfil,
         routes: {
           NamedRoutes.signUp: (context) => const SignUpPage(),
           NamedRoutes.login: (context) => const LoginPage(),
@@ -32,6 +33,7 @@ class App extends StatelessWidget {
           NamedRoutes.chat: (context) => const ChatBotPage(),
           NamedRoutes.transaction: (context) => AddTransactionPage(), // Adicionando a rota para adicionar transação
           NamedRoutes.chat: (context) => ChatBotPage(), // Adicionando a rota para adicionar transação
+          NamedRoutes.perfil: (context) => PerfilPage(), // Adicionando a rota para adicionar transação
         },
       ),
     );
