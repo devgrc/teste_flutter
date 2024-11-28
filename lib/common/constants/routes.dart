@@ -10,5 +10,6 @@ class NamedRoutes {
   static const String addSaldo = "addSaldo";
   static const String transaction = "transaction";
   static const String chat = "chat";
+  static const String perfil = "perfil";
   
 }
