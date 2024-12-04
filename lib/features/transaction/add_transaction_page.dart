@@ -38,7 +38,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
               mainAxisSpacing: 12, // Espaçamento vertical entre os ícones
               children: [
                 ...[
-                   Ionicons.cash, // Dinheiro
+                  Ionicons.cash, // Dinheiro
                   Ionicons.trending_up, // Tendência de Alta
                   Ionicons.trending_down, // Tendência de Baixa
                   Ionicons.swap_horizontal, // Transferência Horizontal
