@@ -11,5 +11,6 @@ class NamedRoutes {
   static const String transaction = "transaction";
   static const String chat = "chat";
   static const String perfil = "perfil";
+  static const String categorias = "categorias";
   
 }
