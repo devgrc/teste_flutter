@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
 import 'package:teste_flutter/features/chatbot/chat_bot_page.dart';
 import 'package:teste_flutter/features/insights/graficos_page.dart';
+import 'package:teste_flutter/features/perfil/perfil_page.dart';
 import 'home_controller.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/common/extensions/sizes.dart';
@@ -24,12 +25,14 @@ class HomePageView extends StatelessWidget {
         builder: (context, controller, child) {
           // Lista de páginas para navegação
           final List<Widget> pages = [
-            _buildHomePage(context, textScaleFactor), // HomePage
+            _buildHomePage(context, textScaleFactor),
             const GraficosPage(), // Página de Insights
-            const ChatBotPage(),  // Página do ChatBot
+            const ChatBotPage(), // Página do ChatBot
+            const PerfilPage(),
           ];
 
-         return pages[controller.state.selectedIndex.clamp(0, pages.length - 1)]; // Exibe a página de acordo com o índice
+          return pages[controller.state.selectedIndex.clamp(
+              0, pages.length - 1)]; // Exibe a página de acordo com o índice
         },
       ),
       bottomNavigationBar: BottomAppBar(
@@ -61,7 +64,8 @@ class HomePageView extends StatelessWidget {
               color: controller.state.selectedIndex == 2
                   ? const Color.fromARGB(255, 255, 255, 255)
                   : Colors.grey.withOpacity(0.5),
-              onPressed: () => controller.updateSelectedIndex(2), // Quando clicar no chat, vai para a página do chatbot
+              onPressed: () => controller.updateSelectedIndex(
+                  2), // Quando clicar no chat, vai para a página do chatbot
               iconSize: 35.0,
             ),
             IconButton(
@@ -104,344 +108,355 @@ class HomePageView extends StatelessWidget {
                     children: [
                       const CircleAvatar(
                         radius: 30.0,
-                        backgroundImage:
-                            AssetImage('assets/images/avatar.png'),
+                        backgroundImage: AssetImage('assets/images/avatar.png'),
                       ),
-                        SizedBox(width: 16.w),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Bem-vindo!',
-                              style: TextStyle(
-                                fontSize: 20.0 * textScaleFactor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'Nome do Usuário',
-                              style:
-                                  TextStyle(fontSize: 16.0 * textScaleFactor),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.notifications),
-                      onPressed: () {
-                        // Lógica para abrir a tela de notificações
-                      },
-                      color: Colors.black,
-                      iconSize: 30.0,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 35.h),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(20.h),
-                      width: Sizes().width * 0.9,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF003617),
-                        borderRadius: BorderRadius.circular(20.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Column(
+                      SizedBox(width: 16.w),
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Saldo',
-                            style: AppTextStyles.KanitSaldo.copyWith(
-                              fontSize: 20 * textScaleFactor,
-                              overflow: TextOverflow.ellipsis,
+                            'Bem-vindo!',
+                            style: TextStyle(
+                              fontSize: 20.0 * textScaleFactor,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Consumer<HomeController>(
-                            builder: (context, controller, child) {
-                              return Text(
-                                controller.formattedBalance,
-                                style: AppTextStyles.KodchasanValor.copyWith(
-                                  fontSize: 16 * textScaleFactor,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              );
-                            },
+                          Text(
+                            'Nome do Usuário',
+                            style: TextStyle(fontSize: 16.0 * textScaleFactor),
                           ),
-                          // ProgressBar
-                          SizedBox(height: 10.h),
-                          Consumer<HomeController>(
-                              builder: (context, controller, child) {
-                            return Container(
-                              width: controller.progressBarWidth,
-                              height: 8.61.h,
-                              decoration: BoxDecoration(
-                                color:
-                                    const Color(0xFFB8EFCB).withOpacity(0.65),
-                                borderRadius: BorderRadius.circular(4.3),
-                              ),
-                            );
-                          }),
                         ],
                       ),
+                    ],
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.notifications),
+                    onPressed: () {
+                      // Lógica para abrir a tela de notificações
+                    },
+                    color: Colors.black,
+                    iconSize: 30.0,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 35.h),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(20.h),
+                    width: Sizes().width * 0.9,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF003617),
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 20.h),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 88.0.h,
-                            width: 100.0.w,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                print('Botão Calendário pressionado!');
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 255, 255, 255),
-                                elevation: 7.0,
-                                shadowColor: const Color(0xFF000000),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.calendar_month_rounded,
-                                      color: Colors.black, size: 40.0),
-                                  const SizedBox(height: 4.0),
-                                  Text(
-                                    'Calendário',
-                                    style: AppTextStyles.KantumruyDespRecei
-                                        .copyWith(
-                                            fontSize: 11 * textScaleFactor),
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
-                            ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Saldo',
+                          style: AppTextStyles.KanitSaldo.copyWith(
+                            fontSize: 20 * textScaleFactor,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(width: 20.w),
-                          ElevatedButton(
+                        ),
+                        Consumer<HomeController>(
+                          builder: (context, controller, child) {
+                            return Text(
+                              controller.formattedBalance,
+                              style: AppTextStyles.KodchasanValor.copyWith(
+                                fontSize: 16 * textScaleFactor,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            );
+                          },
+                        ),
+                        // ProgressBar
+                        SizedBox(height: 10.h),
+                        Consumer<HomeController>(
+                            builder: (context, controller, child) {
+                          return Container(
+                            width: controller.progressBarWidth,
+                            height: 8.61.h,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFB8EFCB).withOpacity(0.65),
+                              borderRadius: BorderRadius.circular(4.3),
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 88.0.h,
+                          width: 100.0.w,
+                          child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context, NamedRoutes.transaction);
-                              print('Botão Adicionar pressionado!');
+                              print('Botão Calendário pressionado!');
                             },
                             style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(123, 125),
-                              backgroundColor: const Color(0xFFB8EFCB),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 255, 255, 255),
                               elevation: 7.0,
                               shadowColor: const Color(0xFF000000),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),
-                            child: Container(
-                              padding: const EdgeInsets.all(16.0),
-                              width: 75.0,
-                              height: 68.0,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF003617),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Align(
-                                alignment: Alignment.center,
-                                child: Icon(
-                                  Icons.add_to_photos_rounded,
-                                  color: Colors.white,
-                                  size: 40.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20.w),
-                          SizedBox(
-                            height: 88.0.h,
-                            width: 100.0.w,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                print('Botão Lembretes pressionado!');
+                            child: GestureDetector(
+                              onTap: () {
+                                // Navega para a página de Categorias usando a rota nomeada
+                                Navigator.pushNamed(
+                                    context, NamedRoutes.transaction);
                               },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 255, 255, 255),
-                                elevation: 7.0,
-                                shadowColor: const Color(0xFF000000),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  // Navega para a página de Categorias usando a rota nomeada
+                                  Navigator.pushNamed(
+                                      context, NamedRoutes.categorias);
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.category_rounded,
+                                        color: Colors.black, size: 40.0),
+                                    const SizedBox(height: 4.0),
+                                    Text(
+                                      'Categorias',
+                                      style: AppTextStyles.KantumruyDespRecei
+                                          .copyWith(
+                                              fontSize: 11 * textScaleFactor),
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.receipt_long_rounded,
-                                      color: Colors.black, size: 40.0),
-                                  const SizedBox(height: 4.0),
-                                  Text(
-                                    'Lembretes',
-                                    style: AppTextStyles.KantumruyDespRecei
-                                        .copyWith(
-                                            fontSize: 11 * textScaleFactor),
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(width: 20.w),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, NamedRoutes.transaction);
+                            print('Botão Adicionar pressionado!');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(123, 125),
+                            backgroundColor: const Color(0xFFB8EFCB),
+                            elevation: 7.0,
+                            shadowColor: const Color(0xFF000000),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(16.0),
+                            width: 75.0,
+                            height: 68.0,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF003617),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.add_to_photos_rounded,
+                                color: Colors.white,
+                                size: 40.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 20.w),
+                        SizedBox(
+                          height: 88.0.h,
+                          width: 100.0.w,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              print('Botão Lembretes pressionado!');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 255, 255, 255),
+                              elevation: 7.0,
+                              shadowColor: const Color(0xFF000000),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.receipt_long_rounded,
+                                    color: Colors.black, size: 40.0),
+                                const SizedBox(height: 4.0),
+                                Text(
+                                  'Lembretes',
+                                  style:
+                                      AppTextStyles.KantumruyDespRecei.copyWith(
+                                          fontSize: 11 * textScaleFactor),
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 25.h),
-                    Container(
-                      padding: const EdgeInsets.all(23.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Histórico Recente',
+                  ),
+                  SizedBox(height: 25.h),
+                  Container(
+                    padding: const EdgeInsets.all(23.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Histórico Recente',
+                              style: AppTextStyles.HistoricoRecente,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                // Lógica para ver tudo
+                              },
+                              child: const Text(
+                                'Ver Tudo',
                                 style: AppTextStyles.HistoricoRecente,
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  // Lógica para ver tudo
-                                },
-                                child: const Text(
-                                  'Ver Tudo',
-                                  style: AppTextStyles.HistoricoRecente,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 0.0),
-                          Consumer<HomeController>(
-                            builder: (context, controller, _) {
-                              return ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: controller.transactions.length,
-                                itemBuilder: (context, index) {
-                                  final transaction =
-                                      controller.transactions[index];
-                                  final formattedValue = NumberFormat.currency(
-                                          locale: 'pt_BR', symbol: '')
-                                      .format(transaction.valor);
-                                  final formattedDate = DateFormat('dd/MM/yyyy')
-                                      .format(transaction.data);
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 0.0),
+                        Consumer<HomeController>(
+                          builder: (context, controller, _) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: controller.transactions.length,
+                              itemBuilder: (context, index) {
+                                final transaction =
+                                    controller.transactions[index];
+                                final formattedValue = NumberFormat.currency(
+                                        locale: 'pt_BR', symbol: '')
+                                    .format(transaction.valor);
+                                final formattedDate = DateFormat('dd/MM/yyyy')
+                                    .format(transaction.data);
 
-                                  return Container(
-                                    width: 369.w,
-                                    height: 66.h,
-                                    margin: EdgeInsets.symmetric(
-                                        vertical: 8.h,
-                                        horizontal: 16
-                                            .w), // Espaçamento nas laterais do Container
-                                    padding: EdgeInsets.all(8
-                                        .h), // Padding interno de 8 para dar espaçamento entre os componentes
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.2),
-                                          spreadRadius: 2,
-                                          blurRadius: 5,
-                                          offset: Offset(0, 3),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Icon(transaction.icon,
-                                                color: const Color.fromARGB(
-                                                    255, 0, 0, 0),
-                                                size: 30.h), // Ícone
-                                            SizedBox(width: 8),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment
-                                                  .center, // Centraliza verticalmente
-                                              children: [
-                                                Text(transaction.nome,
-                                                    style: TextStyle(
-                                                        fontSize: 16.h)),
-                                                Text(
-                                                  '${transaction.categoria} - ${transaction.tipo}',
+                                return Container(
+                                  width: 369.w,
+                                  height: 66.h,
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 8.h,
+                                      horizontal: 16
+                                          .w), // Espaçamento nas laterais do Container
+                                  padding: EdgeInsets.all(8
+                                      .h), // Padding interno de 8 para dar espaçamento entre os componentes
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.2),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(transaction.icon,
+                                              color: const Color.fromARGB(
+                                                  255, 0, 0, 0),
+                                              size: 30.h), // Ícone
+                                          SizedBox(width: 8),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .center, // Centraliza verticalmente
+                                            children: [
+                                              Text(transaction.nome,
                                                   style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 14.h),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .center, // Centraliza verticalmente
-                                          children: [
-                                            Text(
-                                              formattedDate,
-                                              style: TextStyle(
-                                                fontSize: 12.h,
-                                                color: Colors.grey,
+                                                      fontSize: 16.h)),
+                                              Text(
+                                                '${transaction.categoria} - ${transaction.tipo}',
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 14.h),
                                               ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .center, // Centraliza verticalmente
+                                        children: [
+                                          Text(
+                                            formattedDate,
+                                            style: TextStyle(
+                                              fontSize: 12.h,
+                                              color: Colors.grey,
                                             ),
-                                            Text(
-                                              formattedValue,
-                                              style: TextStyle(
-                                                fontSize: 16.h,
-                                                color: transaction.tipo ==
-                                                        'Receita'
-                                                    ? Colors.green
-                                                    : Colors.red,
-                                              ),
+                                          ),
+                                          Text(
+                                            formattedValue,
+                                            style: TextStyle(
+                                              fontSize: 16.h,
+                                              color:
+                                                  transaction.tipo == 'Receita'
+                                                      ? Colors.green
+                                                      : Colors.red,
                                             ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
   }
 }
