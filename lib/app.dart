@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
+import 'package:teste_flutter/features/categorias/categorias_page.dart';
 import 'package:teste_flutter/features/chatbot/chat_bot_page.dart';
 import 'package:teste_flutter/features/onbording/onbording_page.dart';
 import 'package:teste_flutter/features/perfil/perfil_page.dart';
@@ -22,7 +23,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HomeController()),
       ],
       child: MaterialApp(
-        initialRoute: NamedRoutes.perfil,
+        initialRoute: NamedRoutes.home,
         routes: {
           NamedRoutes.signUp: (context) => const SignUpPage(),
           NamedRoutes.login: (context) => const LoginPage(),
@@ -34,6 +35,7 @@ class App extends StatelessWidget {
           NamedRoutes.transaction: (context) => AddTransactionPage(), // Adicionando a rota para adicionar transação
           NamedRoutes.chat: (context) => ChatBotPage(), // Adicionando a rota para adicionar transação
           NamedRoutes.perfil: (context) => PerfilPage(), // Adicionando a rota para adicionar transação
+          NamedRoutes.categorias: (context) => CategoriasPage(), 
         },
       ),
     );
