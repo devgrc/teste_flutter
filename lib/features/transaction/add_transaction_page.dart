@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/features/home/home_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Importando o FontAwesome
+import 'package:teste_flutter/features/categorias/categorias_state.dart'; // Importe o arquivo do provider
 
 class AddTransactionPage extends StatefulWidget {
   @override
@@ -16,11 +17,10 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   final _formKey = GlobalKey<FormState>();
   final _nomeController = TextEditingController();
   final _valorController = TextEditingController();
-  final _categoriaController = TextEditingController();
+  String? _selectedCategory;
   String _tipo = 'Receita';
   DateTime _data = DateTime.now();
-  IconData? _selectedIcon =
-      FontAwesomeIcons.dollarSign; // Definir um ícone padrão
+  IconData? _selectedIcon = FontAwesomeIcons.dollarSign; // Definir um ícone padrão
 
   // Função de escolha do ícone
   void _selectIcon(BuildContext context) {
@@ -84,7 +84,6 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   Ionicons.sunny, // Sol
                   Ionicons.leaf, // Folha
                   Ionicons.flower, // Flor
-                 
                 ].map((icon) {
                   return GestureDetector(
                     onTap: () {
@@ -128,8 +127,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
         centerTitle: true, // Título centralizado
         backgroundColor: const Color(0xFF003617), // Cor de fundo da AppBar
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back,
-              color: Colors.white), // Ícone de voltar branco
+          icon: const Icon(Icons.arrow_back, color: Colors.white), // Ícone de voltar branco
           onPressed: () {
             Navigator.pop(context); // Voltar para a tela anterior
           },
@@ -148,8 +146,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: 'Nome',
-                  labelStyle: const TextStyle(
-                      color: Color.fromARGB(209, 255, 255, 255)),
+                  labelStyle: const TextStyle(color: Color.fromARGB(209, 255, 255, 255)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -157,8 +154,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   hintText: 'Insira o nome',
-                  hintStyle: const TextStyle(
-                      color: Color.fromARGB(103, 255, 255, 255)),
+                  hintStyle: const TextStyle(color: Color.fromARGB(103, 255, 255, 255)),
                   prefixIcon: const Icon(Icons.person, color: Colors.white),
                 ),
                 validator: (value) {
@@ -181,8 +177,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 ],
                 decoration: InputDecoration(
                   labelText: 'Valor',
-                  labelStyle: const TextStyle(
-                      color: Color.fromARGB(209, 255, 255, 255)),
+                  labelStyle: const TextStyle(color: Color.fromARGB(209, 255, 255, 255)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -190,10 +185,8 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   hintText: 'Insira o valor',
-                  hintStyle: const TextStyle(
-                      color: Color.fromARGB(103, 255, 255, 255)),
-                  prefixIcon:
-                      const Icon(Icons.attach_money, color: Colors.white),
+                  hintStyle: const TextStyle(color: Color.fromARGB(103, 255, 255, 255)),
+                  prefixIcon: const Icon(Icons.attach_money, color: Colors.white),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -204,31 +197,46 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
               ),
               const SizedBox(height: 16),
 
-              // Categoria Field
-              TextFormField(
-                controller: _categoriaController,
-                style: const TextStyle(color: Colors.white),
-                textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
-                  labelText: 'Categoria',
-                  labelStyle: const TextStyle(
-                      color: Color.fromARGB(209, 255, 255, 255)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  hintText: 'Insira a categoria',
-                  hintStyle: const TextStyle(
-                      color: Color.fromARGB(103, 255, 255, 255)),
-                  prefixIcon: const Icon(Icons.category, color: Colors.white),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira a categoria';
-                  }
-                  return null;
+              // Categoria Dropdown
+              Consumer<CategoryProvider>(
+                builder: (context, provider, child) {
+                  return DropdownButtonFormField<String>(
+                    value: _selectedCategory,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedCategory = value!;
+                      });
+                    },
+                    items: provider.categories.map((category) {
+                      return DropdownMenuItem<String>(
+                        value: category.name,
+                        child: Text(
+                          category.name,
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                      );
+                    }).toList(),
+                    decoration: InputDecoration(
+                      labelText: 'Categoria',
+                      labelStyle: const TextStyle(color: Color.fromARGB(209, 255, 255, 255)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      hintText: 'Selecione a categoria',
+                      hintStyle: const TextStyle(color: Color.fromARGB(103, 255, 255, 255)),
+                      prefixIcon: const Icon(Icons.category, color: Colors.white),
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, selecione a categoria';
+                      }
+                      return null;
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 16),
@@ -252,8 +260,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 }).toList(),
                 decoration: InputDecoration(
                   labelText: 'Tipo',
-                  labelStyle: const TextStyle(
-                      color: Color.fromARGB(209, 255, 255, 255)),
+                  labelStyle: const TextStyle(color: Color.fromARGB(209, 255, 255, 255)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -271,9 +278,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 child: Row(
                   children: [
                     Icon(
-                      _selectedIcon ??
-                          FontAwesomeIcons
-                              .dollarSign, // Exibindo o ícone selecionado
+                      _selectedIcon ?? FontAwesomeIcons.dollarSign, // Exibindo o ícone selecionado
                       size: 30,
                       color: Colors.white,
                     ),
@@ -297,18 +302,15 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   labelText: 'Data',
-                  labelStyle: const TextStyle(
-                      color: Color.fromARGB(209, 255, 255, 255)),
+                  labelStyle: const TextStyle(color: Color.fromARGB(209, 255, 255, 255)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
                   ),
-                  hintStyle: const TextStyle(
-                      color: Color.fromARGB(103, 255, 255, 255)),
-                  prefixIcon:
-                      const Icon(Icons.calendar_today, color: Colors.white),
+                  hintStyle: const TextStyle(color: Color.fromARGB(103, 255, 255, 255)),
+                  prefixIcon: const Icon(Icons.calendar_today, color: Colors.white),
                 ),
                 onTap: () async {
                   final selectedDate = await showDatePicker(
@@ -336,7 +338,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                       if (_formKey.currentState!.validate()) {
                         final nome = _nomeController.text;
                         final valor = double.parse(_valorController.text);
-                        final categoria = _categoriaController.text;
+                        final categoria = _selectedCategory!;
                         final tipo = _tipo;
                         final data = _data;
                         final isCredit = tipo == 'Receita';
@@ -351,9 +353,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                           icon: _selectedIcon ?? FontAwesomeIcons.dollarSign,
                         );
 
-                        context
-                            .read<HomeController>()
-                            .addReceitaDespesa(transaction);
+                        context.read<HomeController>().addReceitaDespesa(transaction);
                         Navigator.pop(context);
                       }
                     },
