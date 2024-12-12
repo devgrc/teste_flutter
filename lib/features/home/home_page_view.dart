@@ -210,7 +210,8 @@ class HomePageView extends StatelessWidget {
                           width: 100.0.w,
                           child: ElevatedButton(
                             onPressed: () {
-                              print('Botão Calendário pressionado!');
+                              Navigator.pushNamed(
+                                  context, NamedRoutes.categorias);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
