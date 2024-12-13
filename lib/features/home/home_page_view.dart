@@ -3,6 +3,7 @@ import 'package:teste_flutter/common/constants/routes.dart';
 import 'package:teste_flutter/features/chatbot/chat_bot_page.dart';
 import 'package:teste_flutter/features/insights/graficos_page.dart';
 import 'package:teste_flutter/features/perfil/perfil_page.dart';
+import 'package:teste_flutter/features/transaction/all_transaction_page.dart';
 import 'home_controller.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/common/extensions/sizes.dart';
@@ -326,129 +327,148 @@ class HomePageView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 25.h),
+                  SizedBox(height: 35.h),
                   Container(
-                    padding: const EdgeInsets.all(23.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Histórico Recente',
-                              style: AppTextStyles.HistoricoRecente,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                // Lógica para ver tudo
-                              },
-                              child: const Text(
-                                'Ver Tudo',
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal:
+                                  29.0), // Padding horizontal para alinhar com o resto do conteúdo
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Histórico Recente',
                                 style: AppTextStyles.HistoricoRecente,
                               ),
-                            ),
-                          ],
+                              GestureDetector(
+                                onTap: () {
+                                  // Navega para a página AllTransactionPage
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AllTransactionPage(),
+                                    ),
+                                  );
+                                },
+                                child: const Text(
+                                  'Ver Tudo',
+                                  style: AppTextStyles.HistoricoRecente,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 0.0),
                         Consumer<HomeController>(
-                          builder: (context, controller, _) {
-                            return ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: controller.transactions.length,
-                              itemBuilder: (context, index) {
-                                final transaction =
-                                    controller.transactions[index];
-                                final formattedValue = NumberFormat.currency(
-                                        locale: 'pt_BR', symbol: '')
-                                    .format(transaction.valor);
-                                final formattedDate = DateFormat('dd/MM/yyyy')
-                                    .format(transaction.data);
+                            builder: (context, controller, _) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: controller.transactions
+                                .take(3)
+                                .length, // Limita para 3 transações
+                            itemBuilder: (context, index) {
+                              final transaction = controller
+                                  .transactions.reversed
+                                  .toList()[index];
+                              final formattedValue = NumberFormat.currency(
+                                      locale: 'pt_BR', symbol: '')
+                                  .format(transaction.valor);
+                              final formattedDate = DateFormat('dd/MM/yyyy')
+                                  .format(transaction.data);
 
-                                return Container(
-                                  width: 369.w,
-                                  height: 66.h,
-                                  margin: EdgeInsets.symmetric(
-                                      vertical: 8.h,
-                                      horizontal: 16
-                                          .w), // Espaçamento nas laterais do Container
-                                  padding: EdgeInsets.all(8
-                                      .h), // Padding interno de 8 para dar espaçamento entre os componentes
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        spreadRadius: 2,
-                                        blurRadius: 5,
-                                        offset: Offset(0, 3),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(transaction.icon,
-                                              color: const Color.fromARGB(
-                                                  255, 0, 0, 0),
-                                              size: 30.h), // Ícone
-                                          SizedBox(width: 8),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment
-                                                .center, // Centraliza verticalmente
-                                            children: [
-                                              Text(transaction.nome,
-                                                  style: TextStyle(
-                                                      fontSize: 16.h)),
-                                              Text(
-                                                '${transaction.categoria} - ${transaction.tipo}',
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 14.h),
-                                              ),
-                                            ],
+                              return Container(
+                                width: 369.w,
+                                height: 66.h,
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 4.h, horizontal: 24.w),
+                                padding: EdgeInsets.all(10.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.2),
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 42.w,
+                                          height: 40.h,
+                                          padding: EdgeInsets.symmetric(), // Adicionando padding
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF003617)
+                                                .withOpacity(0.25),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment: MainAxisAlignment
-                                            .center, // Centraliza verticalmente
-                                        children: [
-                                          Text(
-                                            formattedDate,
-                                            style: TextStyle(
-                                              fontSize: 12.h,
-                                              color: Colors.grey,
+                                          child: Center(
+                                            child: Icon(transaction.icon,
+                                                color: const Color.fromARGB(
+                                                    255, 0, 0, 0),
+                                                size: 30.h),
+                                          ),
+                                        ),
+                                        SizedBox(width: 8.w),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(transaction.nome,
+                                                style:
+                                                    TextStyle(fontSize: 16.h)),
+                                            Text(
+                                              '${transaction.categoria} - ${transaction.tipo}',
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 14.h),
                                             ),
-                                          ),
-                                          Text(
-                                            formattedValue,
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(formattedDate,
                                             style: TextStyle(
-                                              fontSize: 16.h,
-                                              color:
-                                                  transaction.tipo == 'Receita'
-                                                      ? Colors.green
-                                                      : Colors.red,
-                                            ),
+                                                fontSize: 12.h,
+                                                color: Colors.grey)),
+                                        Text(
+                                          formattedValue,
+                                          style: TextStyle(
+                                            fontSize: 16.h,
+                                            color: transaction.tipo == 'Receita'
+                                                ? Colors.green
+                                                : Colors.red,
                                           ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        })
                       ],
                     ),
                   ),
