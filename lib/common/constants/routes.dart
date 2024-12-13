@@ -13,5 +13,7 @@ class NamedRoutes {
   static const String perfil = "perfil";
   static const String categorias = "categorias";
   static const String graficos = "graficos";
+  static const String allTransactions = "allTransactions";
+
   
 }
