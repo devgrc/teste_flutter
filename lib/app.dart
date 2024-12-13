@@ -9,6 +9,7 @@ import 'package:teste_flutter/features/perfil/perfil_page.dart';
 import 'package:teste_flutter/features/sign_up/sign_up_page.dart';
 import 'package:teste_flutter/features/splash/splash_page.dart';
 import 'package:teste_flutter/features/transaction/add_transaction_page.dart';
+import 'package:teste_flutter/features/transaction/all_transaction_page.dart';
 import 'package:teste_flutter/utils/sizes.dart';
 import 'package:intl/date_symbol_data_local.dart'; // Necessário para a formatação de data
 import 'features/home/home_controller.dart';
@@ -66,6 +67,7 @@ class App extends StatelessWidget {
           NamedRoutes.perfil: (context) => PerfilPage(),
           NamedRoutes.categorias: (context) => CategoriasPage(),
           NamedRoutes.graficos: (context) => GraficosPage(),
+          NamedRoutes.allTransactions: (context) => AllTransactionPage(),
         },
       ),
     );
