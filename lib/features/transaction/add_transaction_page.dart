@@ -7,6 +7,7 @@ import 'package:teste_flutter/common/app_text_styles.dart';
 import 'package:teste_flutter/features/home/home_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Importando o FontAwesome
 import 'package:teste_flutter/features/categorias/categorias_state.dart'; // Importe o arquivo do provider
+import 'package:teste_flutter/utils/sizes.dart'; // Importe o arquivo sizes
 
 class AddTransactionPage extends StatefulWidget {
   @override
@@ -21,8 +22,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   String? _selectedCategory;
   String _tipo = 'Receita';
   DateTime _data = DateTime.now();
-  IconData? _selectedIcon =
-      FontAwesomeIcons.dollarSign; // Definir um ícone padrão
+  IconData? _selectedIcon = FontAwesomeIcons.dollarSign; // Definir um ícone padrão
   bool _isNewCategory = false;
 
   // Função de escolha do ícone
@@ -170,7 +170,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // Valor Field
               TextFormField(
@@ -204,7 +204,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // Categoria Dropdown ou TextField
               Consumer<CategoryProvider>(
@@ -240,7 +240,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8.w),
                           GestureDetector(
                             onTap: () {
                               setState(() {
@@ -269,7 +269,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
                       if (!_isNewCategory)
                         DropdownButtonFormField<String>(
                           value: _selectedCategory,
@@ -346,7 +346,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   );
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // Tipo Dropdown
               DropdownButtonFormField<String>(
@@ -378,7 +378,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 ),
                 style: const TextStyle(color: Colors.white),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // Icon Selection
               GestureDetector(
@@ -400,13 +400,14 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // Data Picker Field
               TextFormField(
                 readOnly: true,
                 controller: TextEditingController(
-                  text: DateFormat('dd/MM/yyyy').format(_data),
+                  text: DateFormat('dd/MM/yyyy').format(
+                      _data), // A data será formatada em português automaticamente
                 ),
                 style: const TextStyle(color: Colors.white),
                 textInputAction: TextInputAction.done,
@@ -431,6 +432,23 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                     initialDate: _data,
                     firstDate: DateTime(2000),
                     lastDate: DateTime(2100),
+                    builder: (BuildContext context, Widget? child) {
+                      return Theme(
+                        data: ThemeData.light().copyWith(
+                          colorScheme: ColorScheme.light(
+                            primary: const Color(0xFF003617), // Cor da seleção das datas."
+                            onPrimary: const Color.fromARGB(255, 255, 255, 255), // Cor dos números ao serem selecionados"
+                            onSurface: const Color.fromARGB(255, 0, 0, 0), // Cor das datas
+                          ),
+                          textButtonTheme: TextButtonThemeData(
+                            style: TextButton.styleFrom(
+                              foregroundColor: const Color(0xFF003617), // Cor do texto dos botões "OK" e "Cancelar"
+                            ),
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
                   );
                   if (selectedDate != null && selectedDate != _data) {
                     setState(() {
@@ -439,13 +457,11 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   }
                 },
               ),
-              const SizedBox(height: 30),
-
-              // Submit Button
+              SizedBox(height: 30.h),
               Center(
                 child: SizedBox(
-                  width: 335.32,
-                  height: 59.0,
+                  width: 335.32.w,
+                  height: 59.0.h,
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
