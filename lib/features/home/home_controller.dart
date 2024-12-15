@@ -81,6 +81,20 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateReceitaDespesa(ReceitaDespesa item, bool isPago) {
+    if (item.tipo == 'Receita' && isPago) {
+      _balance += item.valor; // Incrementa o saldo com a receita
+    } else if (item.tipo == 'Despesa' && isPago) {
+      _balance -= item.valor; // Subtrai a despesa do saldo
+    } else if (item.tipo == 'Receita' && !isPago) {
+      _balance -= item.valor; // Subtrai a receita do saldo
+    } else if (item.tipo == 'Despesa' && !isPago) {
+      _balance += item.valor; // Incrementa o saldo com a despesa
+    }
+
+    notifyListeners();
+  }
+
   List<ReceitaDespesa> get historico => _historico;
 
   List<Map<String, String>> get transacoesFormatadas {
@@ -100,4 +114,3 @@ class HomeController extends ChangeNotifier {
 
   List<ReceitaDespesa> get transactions => _historico;
 }
-
