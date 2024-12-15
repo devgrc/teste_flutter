@@ -27,7 +27,7 @@ class HomePageView extends StatelessWidget {
           // Lista de páginas para navegação
           final List<Widget> pages = [
             _buildHomePage(context, textScaleFactor),
-            const GraficosPage(), // Página de Insights
+             GraficosPage(homeController: controller), // Página de Insights
             const ChatBotPage(), // Página do ChatBot
             const PerfilPage(),
           ];
