@@ -4,9 +4,9 @@ import 'package:teste_flutter/features/chatbot/chat_bot_page.dart';
 import 'package:teste_flutter/features/insights/graficos_page.dart';
 import 'package:teste_flutter/features/perfil/perfil_page.dart';
 import 'package:teste_flutter/features/transaction/all_transaction_page.dart';
+import 'package:teste_flutter/utils/sizes.dart';
 import 'home_controller.dart';
 import 'package:teste_flutter/common/app_text_styles.dart';
-import 'package:teste_flutter/common/extensions/sizes.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -82,7 +82,7 @@ class HomePageView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Lógica para adicionar capital
+          Navigator.pushNamed(context, NamedRoutes.transaction);
         },
         shape: const CircleBorder(),
         backgroundColor: const Color(0xFFB8EFCB),
@@ -184,19 +184,20 @@ class HomePageView extends StatelessWidget {
                             );
                           },
                         ),
-                        // ProgressBar
                         SizedBox(height: 10.h),
                         Consumer<HomeController>(
-                            builder: (context, controller, child) {
-                          return Container(
-                            width: controller.progressBarWidth,
-                            height: 8.61.h,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFB8EFCB).withOpacity(0.65),
-                              borderRadius: BorderRadius.circular(4.3),
-                            ),
-                          );
-                        }),
+                          builder: (context, controller, child) {
+                            return Container(
+                              width: controller.progressBarWidth,
+                              height: 8.61.h,
+                              decoration: BoxDecoration(
+                                color:
+                                    const Color(0xFFB8EFCB).withOpacity(0.65),
+                                borderRadius: BorderRadius.circular(4.3),
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -295,6 +296,8 @@ class HomePageView extends StatelessWidget {
                           width: 100.0.w,
                           child: ElevatedButton(
                             onPressed: () {
+                              Navigator.pushNamed(
+                                  context, NamedRoutes.calendario);
                               print('Botão Lembretes pressionado!');
                             },
                             style: ElevatedButton.styleFrom(
@@ -309,11 +312,11 @@ class HomePageView extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Icon(Icons.receipt_long_rounded,
+                                const Icon(Icons.calendar_month_rounded,
                                     color: Colors.black, size: 40.0),
                                 const SizedBox(height: 4.0),
                                 Text(
-                                  'Lembretes',
+                                  'Calendário',
                                   style:
                                       AppTextStyles.KantumruyDespRecei.copyWith(
                                           fontSize: 11 * textScaleFactor),
@@ -408,7 +411,8 @@ class HomePageView extends StatelessWidget {
                                         Container(
                                           width: 42.w,
                                           height: 40.h,
-                                          padding: EdgeInsets.symmetric(), // Adicionando padding
+                                          padding: EdgeInsets
+                                              .symmetric(), // Adicionando padding
                                           decoration: BoxDecoration(
                                             color: const Color(0xFF003617)
                                                 .withOpacity(0.25),
