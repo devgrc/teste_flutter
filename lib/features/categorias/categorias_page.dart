@@ -97,19 +97,26 @@ class _CategoriasPageState extends State<CategoriasPage> {
   }
 
   void _editCategory(BuildContext context, int index) {
-    _categoryController.text = Provider.of<CategoryProvider>(context, listen: false).categories[index].name;
-    _selectedIcon = Provider.of<CategoryProvider>(context, listen: false).categories[index].icon;
+    _categoryController.text =
+        Provider.of<CategoryProvider>(context, listen: false)
+            .categories[index]
+            .name;
+    _selectedIcon = Provider.of<CategoryProvider>(context, listen: false)
+        .categories[index]
+        .icon;
     showDialog(
       context: context,
       builder: (context) => _buildCategoryDialog(
         title: "Editar Categoria",
         onConfirm: () {
           if (_categoryController.text.isEmpty) {
-            _showSnackBar(context, "Por favor, insira um nome para a categoria.");
+            _showSnackBar(
+                context, "Por favor, insira um nome para a categoria.");
             return;
           }
           if (_selectedIcon == null) {
-            _showSnackBar(context, "Por favor, selecione um ícone para a categoria.");
+            _showSnackBar(
+                context, "Por favor, selecione um ícone para a categoria.");
             return;
           }
 
@@ -117,7 +124,8 @@ class _CategoriasPageState extends State<CategoriasPage> {
             name: _categoryController.text,
             icon: _selectedIcon!,
           );
-          Provider.of<CategoryProvider>(context, listen: false).editCategory(index, category);
+          Provider.of<CategoryProvider>(context, listen: false)
+              .editCategory(index, category);
           _categoryController.clear();
           _selectedIcon = null;
           Navigator.of(context).pop();
@@ -131,7 +139,8 @@ class _CategoriasPageState extends State<CategoriasPage> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text("Confirmação"),
-        content: const Text("Você tem certeza que deseja excluir esta categoria?"),
+        content:
+            const Text("Você tem certeza que deseja excluir esta categoria?"),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -146,7 +155,8 @@ class _CategoriasPageState extends State<CategoriasPage> {
               foregroundColor: Colors.white,
             ),
             onPressed: () {
-              Provider.of<CategoryProvider>(context, listen: false).removeCategory(index);
+              Provider.of<CategoryProvider>(context, listen: false)
+                  .removeCategory(index);
               Navigator.of(context).pop();
             },
             child: const Text("Excluir"),
@@ -291,11 +301,13 @@ class _CategoriasPageState extends State<CategoriasPage> {
                   return ListView.builder(
                     itemCount: provider.categories.length,
                     itemBuilder: (context, index) => Card(
-                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       color: Colors.white,
                       child: ListTile(
                         leading: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           decoration: BoxDecoration(
                             color: const Color(0x6030BE6D),
                             borderRadius: BorderRadius.circular(20),
@@ -306,7 +318,8 @@ class _CategoriasPageState extends State<CategoriasPage> {
                           ),
                         ),
                         title: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           decoration: BoxDecoration(
                             color: const Color(0x6030BE6D),
                             borderRadius: BorderRadius.circular(20),
@@ -322,11 +335,13 @@ class _CategoriasPageState extends State<CategoriasPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              icon: const Icon(Ionicons.create_outline, color: Color(0xFF003617)),
+                              icon: const Icon(Ionicons.create_outline,
+                                  color: Color(0xFF003617)),
                               onPressed: () => _editCategory(context, index),
                             ),
                             IconButton(
-                              icon: const Icon(Ionicons.trash_outline, color: Color(0xFF850000)),
+                              icon: const Icon(Ionicons.trash_outline,
+                                  color: Color(0xFF850000)),
                               onPressed: () => _confirmDelete(context, index),
                             ),
                           ],
@@ -337,31 +352,24 @@ class _CategoriasPageState extends State<CategoriasPage> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF003617),
-                  padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
-                ),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => _buildCategoryDialog(
-                      title: "Adicionar Categoria",
-                      onConfirm: () => _addCategory(context),
-                    ),
-                  );
-                },
-                child: const Text(
-                  "Adicionar Categoria",
-                  style: AppTextStyles.ButtonAddCatego,
-                ),
-              ),
-            ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => _buildCategoryDialog(
+              title: "Adicionar Categoria",
+              onConfirm: () => _addCategory(context),
+            ),
+          );
+        },
+        backgroundColor: const Color(0xFF003617),
+        foregroundColor: Colors.white,
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
