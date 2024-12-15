@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teste_flutter/common/constants/routes.dart';
+import 'package:teste_flutter/features/calendario/calendario_page.dart';
 import 'package:teste_flutter/features/categorias/categorias_page.dart';
 import 'package:teste_flutter/features/chatbot/chat_bot_page.dart';
 import 'package:teste_flutter/features/insights/graficos_page.dart';
@@ -33,41 +34,46 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Inicializa a classe Sizes para gerenciamento de tamanhos
-    Sizes.init(context);
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => HomeController()),
         ChangeNotifierProvider(create: (_) => CategoryProvider()), // Fornecendo o CategoryProvider
       ],
-      child: MaterialApp(
-        locale: const Locale('pt', 'BR'), // Define a localidade para pt_BR globalmente
-        supportedLocales: [
-          const Locale('en', 'US'),
-          const Locale('pt', 'BR'),
-        ],
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          // Aqui você pode adicionar mais delegados se necessário
-        ],
-        initialRoute: NamedRoutes.home,
-        routes: {
-          NamedRoutes.signUp: (context) => const SignUpPage(),
-          NamedRoutes.login: (context) => const LoginPage(),
-          NamedRoutes.addSaldo: (context) => AddSaldoPage(homeController: context.read<HomeController>()),
-          NamedRoutes.home: (context) => HomePage(),
-          NamedRoutes.initial: (context) => const OnboardngPage(),
-          NamedRoutes.splash: (context) => const SplashPage(),
-          NamedRoutes.chat: (context) => const ChatBotPage(),
-          NamedRoutes.transaction: (context) => AddTransactionPage(), // Rota para adicionar transação
-          NamedRoutes.perfil: (context) => PerfilPage(),
-          NamedRoutes.categorias: (context) => CategoriasPage(),
-          NamedRoutes.graficos: (context) => GraficosPage(),
-          NamedRoutes.allTransactions: (context) => AllTransactionPage(),
+      child: Builder(
+        builder: (context) {
+          // Inicializa a classe Sizes para gerenciamento de tamanhos
+          Sizes.init(context);
+
+          return MaterialApp(
+            locale: const Locale('pt', 'BR'), // Define a localidade para pt_BR globalmente
+            supportedLocales: [
+              const Locale('en', 'US'),
+              const Locale('pt', 'BR'),
+            ],
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              // Aqui você pode adicionar mais delegados se necessário
+            ],
+            initialRoute: NamedRoutes.home,
+            routes: {
+              NamedRoutes.signUp: (context) => const SignUpPage(),
+              NamedRoutes.login: (context) => const LoginPage(),
+              NamedRoutes.addSaldo: (context) => AddSaldoPage(homeController: context.read<HomeController>()),
+              NamedRoutes.home: (context) => HomePage(),
+              NamedRoutes.initial: (context) => const OnboardngPage(),
+              NamedRoutes.splash: (context) => const SplashPage(),
+              NamedRoutes.chat: (context) => const ChatBotPage(),
+              NamedRoutes.transaction: (context) => AddTransactionPage(), // Rota para adicionar transação
+              NamedRoutes.perfil: (context) => PerfilPage(),
+              NamedRoutes.categorias: (context) => CategoriasPage(),
+              NamedRoutes.graficos: (context) => GraficosPage(),
+              NamedRoutes.allTransactions: (context) => AllTransactionPage(),
+              NamedRoutes.calendario: (context) => CalendarioPage(homeController: context.read<HomeController>()),
+            },
+          );
         },
       ),
     );
