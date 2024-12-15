@@ -69,7 +69,7 @@ class App extends StatelessWidget {
               NamedRoutes.transaction: (context) => AddTransactionPage(), // Rota para adicionar transação
               NamedRoutes.perfil: (context) => PerfilPage(),
               NamedRoutes.categorias: (context) => CategoriasPage(),
-              NamedRoutes.graficos: (context) => GraficosPage(),
+              NamedRoutes.graficos: (context) => GraficosPage(homeController: context.read<HomeController>()),
               NamedRoutes.allTransactions: (context) => AllTransactionPage(),
               NamedRoutes.calendario: (context) => CalendarioPage(homeController: context.read<HomeController>()),
             },
