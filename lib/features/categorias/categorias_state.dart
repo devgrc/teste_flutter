@@ -8,6 +8,7 @@ class Category {
 
   Category({required this.name, required this.icon});
 
+  // Converte a categoria para um mapa para armazenamento
   Map<String, dynamic> toMap() {
     return {
       'name': name,
@@ -15,9 +16,11 @@ class Category {
     };
   }
 
+  // Cria uma categoria a partir de um mapa
   factory Category.fromMap(Map<String, dynamic> map) {
     return Category(
       name: map['name'],
+      // Usa 'fontFamily: 'MaterialIcons' para garantir que o ícone seja reconhecido
       icon: IconData(map['icon'], fontFamily: 'MaterialIcons'),
     );
   }
@@ -32,6 +35,7 @@ class CategoryProvider with ChangeNotifier {
     _loadCategories();
   }
 
+  // Carrega as categorias armazenadas no SharedPreferences
   Future<void> _loadCategories() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? categoriesJson = prefs.getString('categories');
@@ -42,6 +46,7 @@ class CategoryProvider with ChangeNotifier {
     }
   }
 
+  // Salva as categorias no SharedPreferences
   Future<void> _saveCategories() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<Map<String, dynamic>> categoriesList = _categories.map((category) => category.toMap()).toList();
@@ -49,18 +54,21 @@ class CategoryProvider with ChangeNotifier {
     await prefs.setString('categories', categoriesJson);
   }
 
+  // Adiciona uma nova categoria
   void addCategory(Category category) {
     _categories.add(category);
     _saveCategories();
     notifyListeners();
   }
 
+  // Edita uma categoria existente
   void editCategory(int index, Category category) {
     _categories[index] = category;
     _saveCategories();
     notifyListeners();
   }
 
+  // Remove uma categoria
   void removeCategory(int index) {
     _categories.removeAt(index);
     _saveCategories();
