@@ -106,22 +106,11 @@ class _CalendarioPageState extends State<CalendarioPage> {
       bool isDespesa = vencimento['tipo'] == 'Despesa';
       double valor = vencimento['valor'];
 
-      // Atualiza o saldo no HomeController com base no tipo de vencimento
-      widget.homeController.updateReceitaDespesa(
-        ReceitaDespesa(
-          nome: vencimento['descricao'],
-          valor: valor,
-          tipo: vencimento['tipo'],
-          categoria: vencimento['categoria'],
-          data: date,
-          isCredit: !isDespesa, // Se for despesa, isCredit será falso
-          icon: isDespesa ? Icons.arrow_downward : Icons.arrow_upward,
-        ),
-        isPago,
-      );
-
       // Atualiza a flag 'isPago' do vencimento
       vencimento['isPago'] = isPago;
+
+      // Atualiza o saldo e o histórico de transações no HomeController
+      widget.homeController.updateBalanceAndHistoricoForVencimento(vencimento, isPago);
     });
     _salvarVencimentos(); // Salva os vencimentos no SharedPreferences
   }
