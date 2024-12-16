@@ -113,4 +113,46 @@ class HomeController extends ChangeNotifier {
   }
 
   List<ReceitaDespesa> get transactions => _historico;
+
+  // Método para atualizar o saldo e incluir vencimentos pagos no histórico de transações
+  void updateBalanceAndHistoricoForVencimento(Map<String, dynamic> vencimento, bool isPago) {
+    bool isDespesa = vencimento['tipo'] == 'Despesa';
+    double valor = vencimento['valor'];
+
+    if (isPago) {
+      if (isDespesa) {
+        _balance -= valor; // Subtrai a despesa do saldo
+      } else {
+        _balance += valor; // Incrementa o saldo com a receita
+      }
+
+      // Adiciona o vencimento ao histórico de transações
+      ReceitaDespesa receitaDespesa = ReceitaDespesa(
+        nome: vencimento['descricao'] ?? '',
+        valor: valor,
+        tipo: vencimento['tipo'] ?? '',
+        categoria: vencimento['categoria'] ?? '',
+        data: vencimento['data'] != null ? DateTime.parse(vencimento['data']) : DateTime.now(),
+        isCredit: !isDespesa,
+        icon: isDespesa ? Icons.arrow_downward : Icons.arrow_upward,
+      );
+      _historico.add(receitaDespesa);
+    } else {
+      if (isDespesa) {
+        _balance += valor; // Incrementa o saldo com a despesa
+      } else {
+        _balance -= valor; // Subtrai a receita do saldo
+      }
+
+      // Remove o vencimento do histórico de transações
+      _historico.removeWhere((item) =>
+          item.nome == vencimento['descricao'] &&
+          item.valor == valor &&
+          item.tipo == vencimento['tipo'] &&
+          item.categoria == vencimento['categoria'] &&
+          item.data == DateTime.parse(vencimento['data']));
+    }
+
+    notifyListeners();
+  }
 }
