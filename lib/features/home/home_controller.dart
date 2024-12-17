@@ -112,20 +112,20 @@ class HomeController extends ChangeNotifier {
   void updateBalanceAndHistoricoForVencimento(Map<String, dynamic> vencimento, bool isPago) {
     bool isDespesa = vencimento['tipo'] == 'Despesa';
     double valor = vencimento['valor'];
-
+  
     if (isPago) {
       if (isDespesa) {
         _balance -= valor; // Subtrai a despesa do saldo
       } else {
         _balance += valor; // Incrementa o saldo com a receita
       }
-
+  
       // Adiciona o vencimento ao histórico de transações
       ReceitaDespesa receitaDespesa = ReceitaDespesa(
-        nome: vencimento['descricao'] ?? '',
+        nome: vencimento['descricao'] ?? '', // Adiciona um valor padrão se for nulo
         valor: valor,
-        tipo: vencimento['tipo'] ?? '',
-        categoria: vencimento['categoria'] ?? '',
+        tipo: vencimento['tipo'] ?? '', // Adiciona um valor padrão se for nulo
+        categoria: vencimento['categoria'] ?? '', // Adiciona um valor padrão se for nulo
         data: vencimento['data'] != null ? DateTime.parse(vencimento['data']) : DateTime.now(),
         isCredit: !isDespesa,
         icon: isDespesa ? Icons.arrow_downward : Icons.arrow_upward,
@@ -137,16 +137,16 @@ class HomeController extends ChangeNotifier {
       } else {
         _balance -= valor; // Subtrai a receita do saldo
       }
-
+  
       // Remove o vencimento do histórico de transações
       _historico.removeWhere((item) =>
-          item.nome == vencimento['descricao'] &&
+          item.nome == (vencimento['descricao'] ?? '') &&
           item.valor == valor &&
-          item.tipo == vencimento['tipo'] &&
-          item.categoria == vencimento['categoria'] &&
-          item.data == DateTime.parse(vencimento['data']));
+          item.tipo == (vencimento['tipo'] ?? '') &&
+          item.categoria == (vencimento['categoria'] ?? '') &&
+          item.data == (vencimento['data'] != null ? DateTime.parse(vencimento['data']) : DateTime.now()));
     }
-
+  
     _updateProgressBarWidth();
     notifyListeners();
   }
