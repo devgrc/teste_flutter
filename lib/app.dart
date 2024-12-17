@@ -20,6 +20,7 @@ import 'features/saldo/add_saldo_page.dart';
 import 'features/categorias/categorias_state.dart'; // Importação do provider de categorias
 
 // Adicionar as localizações globais necessárias
+// ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
@@ -54,10 +55,9 @@ class App extends StatelessWidget {
               GlobalMaterialLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
               // Aqui você pode adicionar mais delegados se necessário
             ],
-            initialRoute: NamedRoutes.home,
+            initialRoute: NamedRoutes.addSaldo,
             routes: {
               NamedRoutes.signUp: (context) => const SignUpPage(),
               NamedRoutes.login: (context) => const LoginPage(),
