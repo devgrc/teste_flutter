@@ -116,15 +116,11 @@ class HomePageView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Bem-vindo!',
+                            'Seja Bem-vindo!',
                             style: TextStyle(
                               fontSize: 20.0 * textScaleFactor,
                               fontWeight: FontWeight.bold,
                             ),
-                          ),
-                          Text(
-                            'Nome do Usuário',
-                            style: TextStyle(fontSize: 16.0 * textScaleFactor),
                           ),
                         ],
                       ),
