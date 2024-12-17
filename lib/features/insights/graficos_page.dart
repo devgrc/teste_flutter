@@ -7,7 +7,9 @@ import 'package:teste_flutter/features/home/home_controller.dart';
 import 'dart:math';
 
 class GraficosPage extends StatefulWidget {
-  const GraficosPage({super.key, required HomeController homeController});
+  const GraficosPage({super.key, required this.homeController});
+
+  final HomeController homeController;
 
   @override
   _GraficosPageState createState() => _GraficosPageState();
@@ -21,7 +23,7 @@ class _GraficosPageState extends State<GraficosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Visualização de Dados'),
+        title: const Text('Gráficos'),
         titleTextStyle: AppTextStyles.KodchasanAddTandaction,
         backgroundColor: const Color(0xFF003617),
         centerTitle: true,
